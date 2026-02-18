@@ -33,11 +33,10 @@ body{
 }
 @media(min-width: 960px) { body { padding-bottom: 0; } }
 
-/* UPPDATERAT: Plus Jakarta Sans för rubriker */
 h1,h2,h3,h4,h5,h6{
   font-family:'Plus Jakarta Sans',sans-serif;
   font-weight:700;
-  letter-spacing:-0.03em; /* Lite tajtare för en krispigare look */
+  letter-spacing:-0.03em;
   line-height:1.1;
 }
 
@@ -63,7 +62,6 @@ h1,h2,h3,h4,h5,h6{
 .nav.scrolled{background:rgba(255,255,255,0.95);backdrop-filter:blur(16px);border-bottom:1px solid rgba(0,0,0,0.05);padding:0 24px;}
 .nav-inner{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;height:80px;}
 
-/* UPPDATERAT: Font */
 .nav-logo{font-family:'Plus Jakarta Sans',sans-serif;font-size:22px;font-weight:800;color:white;letter-spacing:-0.5px;text-decoration: none; transition: color 0.3s;}
 .nav.scrolled .nav-logo {color: var(--blue);} 
 .nav-logo span{color:var(--accent);}
@@ -91,11 +89,12 @@ h1,h2,h3,h4,h5,h6{
 .cta-btn.secondary:hover {background: rgba(255,255,255,0.2);}
 .cta-btn.full-width {width: 100%; justify-content: center;}
 
-/* ─── HERO (OPTIMIZED FONT SIZES) ─── */
+/* ─── HERO ─── */
 .hero{
   min-height:100vh;display:flex;align-items:center;justify-content:center;
   background-color: var(--dark);
-  background-image: linear-gradient(to bottom, rgba(15, 23, 42, 0.8), rgba(15, 23, 42, 0.9)), url('https://images.unsplash.com/photo-1578322646660-3165384196c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+  /* BAKGRUNDSBILD HERO */
+  background-image: linear-gradient(to bottom, rgba(15, 23, 42, 0.8), rgba(15, 23, 42, 0.9)), url('ribbon-gymnastics-and-flexible-woman-stretching-i-2026-01-09-09-40-38-utc.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -111,7 +110,6 @@ h1,h2,h3,h4,h5,h6{
 }
 .hero-badge span{color:#bfdbfe;font-size:13px;font-weight:600;letter-spacing:0.5px;text-transform: uppercase;}
 
-/* FONT SIZE TWEAKS HERE */
 .hero h1{font-size:48px;font-weight:800;color:white;margin-bottom:20px;letter-spacing:-1.2px;line-height:1.1;}
 .hero h1 span{background: linear-gradient(to right, #60a5fa, #3b82f6); -webkit-background-clip: text; -webkit-text-fill-color: transparent;}
 .hero-sub{font-size:18px;color:#e2e8f0;line-height:1.6;margin-bottom:32px;max-width:540px; text-shadow: 0 2px 4px rgba(0,0,0,0.3);}
@@ -151,7 +149,7 @@ input:checked + .slider:before { transform: translateX(24px); }
 .slider-group{margin-bottom:28px;}
 .slider-header{display:flex;justify-content:space-between;margin-bottom:12px;}
 .slider-label{color:#cbd5e1;font-size:14px;font-weight:500;}
-/* UPPDATERAT: Font */
+
 .slider-value{color:var(--accent);font-weight:700;font-size:16px; font-family: 'Plus Jakarta Sans', sans-serif;}
 .slider-group input[type=range]{
   width:100%;-webkit-appearance:none;height:6px;cursor:pointer;background:rgba(255,255,255,0.2);border-radius:3px;outline:none;
@@ -168,7 +166,7 @@ input:checked + .slider:before { transform: translateX(24px); }
 .roi-row-value.green{color:#34d399;}
 .roi-total{border-top:1px solid rgba(255,255,255,0.1);padding-top:16px;margin-top:12px;display:flex;justify-content:space-between;align-items:center;}
 .roi-total-label{color:white;font-size:15px;font-weight:600;}
-/* UPPDATERAT: Font */
+
 .roi-total-value{font-family:'Plus Jakarta Sans',sans-serif;font-size:36px;font-weight:800;background:linear-gradient(90deg,#34d399,#10b981);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
 
 .roi-cta{
@@ -194,7 +192,6 @@ input:checked + .slider:before { transform: translateX(24px); }
     display: flex; align-items: center; justify-content: center;
     box-shadow: var(--shadow); color: var(--accent);
 }
-/* UPPDATERAT: Font */
 .step-num{font-family: 'Plus Jakarta Sans', sans-serif; font-size: 48px; font-weight: 800; color: #f1f5f9; position: absolute; top: -20px; right: 0; z-index: -1;}
 .step-card h3{font-size:24px;font-weight:700;color:var(--blue);margin-bottom:12px;}
 .step-card p{color:#64748b;font-size:16px;line-height:1.7;}
@@ -281,7 +278,7 @@ input:checked + .slider:before { transform: translateX(24px); }
 /* ─── NEW CTA SECTION (DARK BACKGROUND FIX) ─── */
 .cta-section{
   padding:120px 24px;
-  background-color: var(--blue); /* Explicit fallback */
+  background-color: var(--blue);
   background-image: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
   position:relative; overflow:hidden;
 }
@@ -739,7 +736,7 @@ details[open] summary:after { content: '−'; }
     
     <div class="about-flex fade-up">
       <div class="about-image-wrapper">
-        <img class="about-photo" loading="lazy" src="https://images.unsplash.com/photo-1552033835-18cee4219747?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Mattias Larsson — EMK Solutions grundare">
+        <img class="about-photo" loading="lazy" src="mattiasrund.png" alt="Mattias Larsson — EMK Solutions grundare">
       </div>
       
       <div class="about-text">
@@ -751,9 +748,9 @@ details[open] summary:after { content: '−'; }
     </div>
     
     <div class="gallery fade-up" style="transition-delay:0.2s">
-      <img src="https://images.unsplash.com/photo-1518619740986-52467d55eb03?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" loading="lazy" alt="Gymnastikträning">
-      <img src="https://images.unsplash.com/photo-1571019614248-c5c8c5040689?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" loading="lazy" alt="Gymnastikringar">
-      <img src="https://images.unsplash.com/photo-1578322646660-3165384196c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" loading="lazy" alt="Coach instruerar">
+      <img src="Handstående.jpg" loading="lazy" alt="Gymnastik handstående">
+      <img src="I barren.jpg" loading="lazy" alt="I barren">
+      <img src="Bakifrån.jpg" loading="lazy" alt="Gymnastik bakifrån">
     </div>
   </div>
 </section>
