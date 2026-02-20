@@ -93,7 +93,6 @@ h1,h2,h3,h4,h5,h6{
 .hero{
   min-height:100vh;display:flex;align-items:center;justify-content:center;
   background-color: var(--dark);
-  /* BAKGRUNDSBILD HERO */
   background-image: linear-gradient(to bottom, rgba(15, 23, 42, 0.8), rgba(15, 23, 42, 0.9)), url('ribbon-gymnastics-and-flexible-woman-stretching-i-2026-01-09-09-40-38-utc.jpg');
   background-size: cover;
   background-position: center;
@@ -280,7 +279,10 @@ input:checked + .slider:before { transform: translateX(24px); }
 .cta-section{
   padding:120px 24px;
   background-color: var(--blue);
-  background-image: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
+  /* Ny bakgrundsbild och gradient för CTA-sektionen */
+  background-image: linear-gradient(to right, rgba(15, 23, 42, 0.95), rgba(30, 58, 138, 0.85)), url('https://images.unsplash.com/photo-1578322646660-3165384196c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');
+  background-size: cover;
+  background-position: center;
   position:relative; overflow:hidden;
 }
 
@@ -359,16 +361,46 @@ details[open] summary:after { content: '−'; }
     box-shadow: 0 10px 30px -5px rgba(59, 130, 246, 0.5);
 }
 
-/* ─── RESPONSIVE ─── */
+/* ─── RESPONSIVE (MOBILE OPTIMIZATIONS) ─── */
 @media(max-width:960px){
-  .hero-grid{grid-template-columns:1fr;gap:60px;text-align:center;}
-  .hero h1{font-size:36px;} 
-  .hero-sub{margin-left:auto;margin-right:auto;}
-  .hero-actions{justify-content:center;}
-  .steps-grid, .trust-grid, .gallery{grid-template-columns:1fr;}
+  .section { padding: 80px 24px; } /* Optimerad padding för mobil */
+  .hero { padding: 100px 24px 60px; }
   
-  .about-flex{flex-direction:column-reverse; text-align:center;}
+  .hero-grid{grid-template-columns:1fr;gap:60px;text-align:center;}
+  .hero h1{font-size:38px; line-height:1.15;} /* Tydligare radavstånd för huvudrubrik */
+  .hero-sub{margin-left:auto;margin-right:auto; font-size: 16px; line-height: 1.5;}
+  .hero-actions{justify-content:center;}
+  
+  .section-title { font-size: 32px; line-height: 1.2; margin-bottom: 12px; }
+  .section-subtitle { font-size: 16px; line-height: 1.5; }
+  
+  .steps-grid, .trust-grid{grid-template-columns:1fr;}
+  
+  /* Optimerad "Om oss" på mobil */
+  .about-flex{flex-direction:column; text-align:center; gap: 32px;} /* Column istället för column-reverse lägger bilden överst */
+  .about-photo { max-width: 220px; } /* Mindre bild på mobil */
+  .about-text h3 { font-size: 28px; line-height: 1.2; }
+  .about-text p { font-size: 16px; line-height: 1.6; }
   .quote {border-left: none; border-top: 4px solid var(--accent); padding-top: 20px; padding-left: 0;}
+  
+  /* Ny design: Scrollbart galleri på mobil (Carousel) */
+  .gallery {
+      display: flex;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      gap: 16px;
+      padding-bottom: 20px;
+      margin-top: 40px;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none; /* Döljer scrollbar i Firefox */
+  }
+  .gallery::-webkit-scrollbar { display: none; } /* Döljer scrollbar i Chrome/Safari */
+  .gallery img {
+      flex: 0 0 85%; /* Visar lite av nästa bild så man fattar att det går att swipa */
+      scroll-snap-align: center;
+      height: 300px;
+  }
   
   /* Mobile Menu */
   .mobile-toggle {display: block;}
@@ -889,7 +921,7 @@ details[open] summary:after { content: '−'; }
 
     <div class="footer-bottom">
         <p>© 2026 EMK Solutions AB. Alla rättigheter förbehållna.</p>
-        <p style="font-size:13px; opacity:0.6;">Orgnr: 556XXX-XXXX</p>
+        <p style="font-size:13px; opacity:0.6;">Orgnr: 559419-5090</p>
     </div>
   </div>
 </footer>
