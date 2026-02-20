@@ -60,7 +60,7 @@ h1,h2,h3,h4,h5,h6{
 /* ─── NAV ─── */
 .nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:0 24px;transition:all 0.3s ease;}
 .nav.scrolled{background:rgba(255,255,255,0.95);backdrop-filter:blur(16px);border-bottom:1px solid rgba(0,0,0,0.05);padding:0 24px;}
-.nav-inner{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;height:80px;}
+.nav-inner{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;height:80px; position:relative; z-index:1001;}
 
 .nav-logo{font-family:'Plus Jakarta Sans',sans-serif;font-size:22px;font-weight:800;color:white;letter-spacing:-0.5px;text-decoration: none; transition: color 0.3s;}
 .nav.scrolled .nav-logo {color: var(--blue);} 
@@ -72,8 +72,11 @@ h1,h2,h3,h4,h5,h6{
 .nav-links a.nav-item:hover{color:white;}
 .nav.scrolled .nav-links a.nav-item:hover{color:var(--accent);}
 
-.mobile-toggle{display:none;background:none;border:none;cursor:pointer;color:white;}
+.mobile-toggle{display:none;background:none;border:none;cursor:pointer;color:white; z-index:1002;}
 .nav.scrolled .mobile-toggle {color: var(--blue);}
+/* Add styling when menu is open on mobile */
+.nav.menu-open .mobile-toggle {color: var(--blue);}
+.nav.menu-open .nav-logo {color: var(--blue);}
 
 /* ─── BUTTONS ─── */
 .cta-btn{
@@ -279,7 +282,6 @@ input:checked + .slider:before { transform: translateX(24px); }
 .cta-section{
   padding:120px 24px;
   background-color: var(--blue);
-  /* Ny bakgrundsbild och gradient för CTA-sektionen */
   background-image: linear-gradient(to right, rgba(15, 23, 42, 0.95), rgba(30, 58, 138, 0.85)), url('https://images.unsplash.com/photo-1578322646660-3165384196c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');
   background-size: cover;
   background-position: center;
@@ -353,6 +355,7 @@ details[open] summary:after { content: '−'; }
     z-index: 999;
     display: none; 
     pointer-events: none;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
 }
 .mobile-sticky-cta a { 
     width: 100%; 
@@ -360,30 +363,53 @@ details[open] summary:after { content: '−'; }
     pointer-events: auto;
     box-shadow: 0 10px 30px -5px rgba(59, 130, 246, 0.5);
 }
+/* Klass som läggs till med JS för att dölja knappen */
+.mobile-sticky-cta.hidden {
+    transform: translateY(150px);
+    opacity: 0;
+    pointer-events: none;
+}
 
 /* ─── RESPONSIVE (MOBILE OPTIMIZATIONS) ─── */
 @media(max-width:960px){
-  .section { padding: 80px 24px; } /* Optimerad padding för mobil */
+  /* TIGHTARE PACING (Punkt 5) */
+  .section { padding: 64px 24px; } /* Minskad vertikal luft */
   .hero { padding: 100px 24px 60px; }
   
-  .hero-grid{grid-template-columns:1fr;gap:60px;text-align:center;}
-  .hero h1{font-size:38px; line-height:1.15;} /* Tydligare radavstånd för huvudrubrik */
+  .hero-grid{grid-template-columns:1fr;gap:40px;text-align:center;}
+  .hero h1{font-size:38px; line-height:1.15;}
   .hero-sub{margin-left:auto;margin-right:auto; font-size: 16px; line-height: 1.5;}
   .hero-actions{justify-content:center;}
   
   .section-title { font-size: 32px; line-height: 1.2; margin-bottom: 12px; }
   .section-subtitle { font-size: 16px; line-height: 1.5; }
   
-  .steps-grid, .trust-grid{grid-template-columns:1fr;}
+  .steps-grid { gap: 32px; grid-template-columns:1fr; } /* Minskad luft mellan stegen */
+  .trust-grid { grid-template-columns:1fr; }
   
-  /* Optimerad "Om oss" på mobil */
-  .about-flex{flex-direction:column; text-align:center; gap: 32px;} /* Column istället för column-reverse lägger bilden överst */
-  .about-photo { max-width: 220px; } /* Mindre bild på mobil */
+  /* STÖRRE TOUCH TARGETS FÖR SLIDERS (Punkt 1) */
+  .slider-group input[type=range]::-webkit-slider-thumb{
+      width: 32px; height: 32px; /* Upp från 24px till 32px */
+  }
+
+  /* KANT-TILL-KANT INKORG (Punkt 4) */
+  .inbox-wrapper {
+      margin-left: -24px; 
+      margin-right: -24px;
+      width: calc(100% + 48px);
+      max-width: none;
+      border-radius: 0; /* Tar bort rundade hörn för en infälld look */
+      border-left: none; 
+      border-right: none;
+      box-shadow: 0 10px 20px -10px rgba(0,0,0,0.05);
+  }
+  
+  .about-flex{flex-direction:column; text-align:center; gap: 32px;}
+  .about-photo { max-width: 220px; } 
   .about-text h3 { font-size: 28px; line-height: 1.2; }
   .about-text p { font-size: 16px; line-height: 1.6; }
   .quote {border-left: none; border-top: 4px solid var(--accent); padding-top: 20px; padding-left: 0;}
   
-  /* Ny design: Scrollbart galleri på mobil (Carousel) */
   .gallery {
       display: flex;
       flex-wrap: nowrap;
@@ -393,24 +419,28 @@ details[open] summary:after { content: '−'; }
       padding-bottom: 20px;
       margin-top: 40px;
       -webkit-overflow-scrolling: touch;
-      scrollbar-width: none; /* Döljer scrollbar i Firefox */
+      scrollbar-width: none; 
   }
-  .gallery::-webkit-scrollbar { display: none; } /* Döljer scrollbar i Chrome/Safari */
+  .gallery::-webkit-scrollbar { display: none; } 
   .gallery img {
-      flex: 0 0 85%; /* Visar lite av nästa bild så man fattar att det går att swipa */
+      flex: 0 0 85%; 
       scroll-snap-align: center;
       height: 300px;
   }
   
-  /* Mobile Menu */
+  /* FULLSKÄRMS-MENY MED BLUR (Punkt 2) */
   .mobile-toggle {display: block;}
   .nav-links {
-    position: absolute; top: 80px; left: 0; right: 0; background: white; 
-    flex-direction: column; padding: 24px; gap: 24px; box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-    transform: translateY(-150%); transition: transform 0.3s ease; z-index: 900;
+    position: fixed; top: 0; left: 0; right: 0; bottom: 0; height: 100vh;
+    background: rgba(255, 255, 255, 0.96); 
+    backdrop-filter: blur(16px);
+    flex-direction: column; justify-content: center; align-items: center; 
+    padding: 24px; gap: 40px; box-shadow: none;
+    transform: translateY(-100%); transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1); 
+    z-index: 900;
   }
   .nav-links.open {transform: translateY(0);}
-  .nav-links a.nav-item {font-size: 18px; color: var(--blue);}
+  .nav-links a.nav-item {font-size: 22px; font-weight: 600; color: var(--blue);}
   
   .solution-grid {grid-template-columns: 1fr;}
   
@@ -598,7 +628,7 @@ details[open] summary:after { content: '−'; }
   </div>
 </section>
 
-<section class="section bg-blue" style="background:#0f172a; padding: 80px 24px;">
+<section class="section bg-blue" style="background:#0f172a;">
     <div class="section-inner integration-grid" style="display:grid; grid-template-columns: 1fr 1fr; gap:64px; align-items:center;">
         
         <div class="fade-up">
@@ -876,7 +906,7 @@ details[open] summary:after { content: '−'; }
   </div>
 </section>
 
-<div class="mobile-sticky-cta">
+<div class="mobile-sticky-cta" id="mobile-sticky-cta">
     <a href="https://calendly.com/mattias-larsson-emkmarketing/motesbokning" target="_blank" class="cta-btn cta-btn-sm" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/mattias-larsson-emkmarketing/motesbokning'});return false;">Boka demo (15 min)</a>
 </div>
 
@@ -935,9 +965,11 @@ lucide.createIcons();
 // ─── MOBILE NAV ───
 const mobileToggle = document.getElementById('mobile-toggle');
 const navLinks = document.getElementById('nav-links');
+const nav = document.getElementById('nav');
 
 mobileToggle.addEventListener('click', () => {
     navLinks.classList.toggle('open');
+    nav.classList.toggle('menu-open');
     const icon = navLinks.classList.contains('open') ? 'x' : 'menu';
     mobileToggle.innerHTML = `<i data-lucide="${icon}" style="width:28px;height:28px;"></i>`;
     lucide.createIcons();
@@ -946,13 +978,13 @@ mobileToggle.addEventListener('click', () => {
 document.querySelectorAll('.nav-links a').forEach(link => {
     link.addEventListener('click', () => {
         navLinks.classList.remove('open');
+        nav.classList.remove('menu-open');
         mobileToggle.innerHTML = `<i data-lucide="menu" style="width:28px;height:28px;"></i>`;
         lucide.createIcons();
     });
 });
 
 // ─── OPTIMIZED NAV SCROLL ───
-const nav = document.getElementById('nav');
 let isScrolled = false;
 
 window.addEventListener('scroll', () => {
@@ -977,6 +1009,26 @@ const observer = new IntersectionObserver(function(entries){
 }, observerOptions);
 
 document.querySelectorAll('.fade-up').forEach(function(el){observer.observe(el);});
+
+// ─── SMART STICKY CTA (PUNKT 3) ───
+const stickyCta = document.getElementById('mobile-sticky-cta');
+const ctaSection = document.getElementById('cta');
+
+if(stickyCta && ctaSection) {
+    const ctaObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if(entry.isIntersecting) {
+                // Hide sticky CTA when reaching the footer/form
+                stickyCta.classList.add('hidden');
+            } else {
+                // Show it again when scrolling up
+                stickyCta.classList.remove('hidden');
+            }
+        });
+    }, { threshold: 0.1 }); 
+    
+    ctaObserver.observe(ctaSection);
+}
 
 // ─── ROI CALCULATOR ───
 const roiToggle = document.getElementById('roi-mode-toggle');
