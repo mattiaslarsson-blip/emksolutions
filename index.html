@@ -74,7 +74,6 @@ h1,h2,h3,h4,h5,h6{
 
 .mobile-toggle{display:none;background:none;border:none;cursor:pointer;color:white; z-index:1002;}
 .nav.scrolled .mobile-toggle {color: var(--blue);}
-/* Add styling when menu is open on mobile */
 .nav.menu-open .mobile-toggle {color: var(--blue);}
 .nav.menu-open .nav-logo {color: var(--blue);}
 
@@ -363,7 +362,6 @@ details[open] summary:after { content: '−'; }
     pointer-events: auto;
     box-shadow: 0 10px 30px -5px rgba(59, 130, 246, 0.5);
 }
-/* Klass som läggs till med JS för att dölja knappen */
 .mobile-sticky-cta.hidden {
     transform: translateY(150px);
     opacity: 0;
@@ -372,8 +370,7 @@ details[open] summary:after { content: '−'; }
 
 /* ─── RESPONSIVE (MOBILE OPTIMIZATIONS) ─── */
 @media(max-width:960px){
-  /* TIGHTARE PACING (Punkt 5) */
-  .section { padding: 64px 24px; } /* Minskad vertikal luft */
+  .section { padding: 64px 24px; } 
   .hero { padding: 100px 24px 60px; }
   
   .hero-grid{grid-template-columns:1fr;gap:40px;text-align:center;}
@@ -384,21 +381,47 @@ details[open] summary:after { content: '−'; }
   .section-title { font-size: 32px; line-height: 1.2; margin-bottom: 12px; }
   .section-subtitle { font-size: 16px; line-height: 1.5; }
   
-  .steps-grid { gap: 32px; grid-template-columns:1fr; } /* Minskad luft mellan stegen */
-  .trust-grid { grid-template-columns:1fr; }
+  /* CAROUSEL FÖR STEG OCH BYGGT FÖR FÖRENINGAR PÅ MOBIL */
+  .steps-grid, .trust-grid {
+      display: flex;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      gap: 16px;
+      padding-bottom: 24px;
+      margin-left: -24px; 
+      margin-right: -24px;
+      padding-left: 24px; 
+      padding-right: 24px;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none; 
+  }
+  .steps-grid::-webkit-scrollbar, .trust-grid::-webkit-scrollbar { display: none; }
   
-  /* STÖRRE TOUCH TARGETS FÖR SLIDERS (Punkt 1) */
+  .step-card, .trust-block {
+      flex: 0 0 85%; /* Visar kanten av nästa kort för att indikera swipe */
+      scroll-snap-align: center;
+  }
+  
+  /* Gör stegen till tydliga "kort" på mobilen så swipe-känslan blir bäst */
+  .step-card {
+      background: white;
+      padding: 32px 24px;
+      border-radius: 20px;
+      border: 1px solid #e2e8f0;
+      box-shadow: 0 10px 20px -10px rgba(0,0,0,0.05);
+  }
+  
   .slider-group input[type=range]::-webkit-slider-thumb{
-      width: 32px; height: 32px; /* Upp från 24px till 32px */
+      width: 32px; height: 32px; 
   }
 
-  /* KANT-TILL-KANT INKORG (Punkt 4) */
   .inbox-wrapper {
       margin-left: -24px; 
       margin-right: -24px;
       width: calc(100% + 48px);
       max-width: none;
-      border-radius: 0; /* Tar bort rundade hörn för en infälld look */
+      border-radius: 0; 
       border-left: none; 
       border-right: none;
       box-shadow: 0 10px 20px -10px rgba(0,0,0,0.05);
@@ -428,7 +451,6 @@ details[open] summary:after { content: '−'; }
       height: 300px;
   }
   
-  /* FULLSKÄRMS-MENY MED BLUR (Punkt 2) */
   .mobile-toggle {display: block;}
   .nav-links {
     position: fixed; top: 0; left: 0; right: 0; bottom: 0; height: 100vh;
@@ -1010,7 +1032,7 @@ const observer = new IntersectionObserver(function(entries){
 
 document.querySelectorAll('.fade-up').forEach(function(el){observer.observe(el);});
 
-// ─── SMART STICKY CTA (PUNKT 3) ───
+// ─── SMART STICKY CTA ───
 const stickyCta = document.getElementById('mobile-sticky-cta');
 const ctaSection = document.getElementById('cta');
 
@@ -1018,10 +1040,8 @@ if(stickyCta && ctaSection) {
     const ctaObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if(entry.isIntersecting) {
-                // Hide sticky CTA when reaching the footer/form
                 stickyCta.classList.add('hidden');
             } else {
-                // Show it again when scrolling up
                 stickyCta.classList.remove('hidden');
             }
         });
