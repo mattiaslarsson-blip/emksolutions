@@ -371,12 +371,25 @@ details[open] summary:after { content: '−'; }
 /* ─── RESPONSIVE (MOBILE OPTIMIZATIONS) ─── */
 @media(max-width:960px){
   .section { padding: 64px 24px; } 
-  .hero { padding: 100px 24px 60px; }
   
-  .hero-grid{grid-template-columns:1fr;gap:40px;text-align:center;}
-  .hero h1{font-size:38px; line-height:1.15;}
-  .hero-sub{margin-left:auto;margin-right:auto; font-size: 16px; line-height: 1.5;}
-  .hero-actions{justify-content:center;}
+  /* UPPDATERAD HERO PÅ MOBIL */
+  .hero { padding: 110px 24px 64px; }
+  .hero-grid{grid-template-columns:1fr; gap:48px; text-align:center;} /* Mer luft mellan text och kalkylator */
+  .hero h1{font-size:34px; line-height:1.2; margin-bottom:16px; letter-spacing:-0.5px;} /* Bättre radavstånd */
+  .hero-sub{margin: 0 auto 32px; font-size: 16px; line-height: 1.6; max-width: 90%;}
+  
+  /* STAPLADE KNAPPAR I HERO PÅ MOBIL */
+  .hero-actions { 
+      flex-direction: column; 
+      gap: 12px; 
+      width: 100%; 
+      max-width: 320px; 
+      margin: 0 auto; 
+  }
+  .hero-actions .cta-btn { 
+      width: 100%; 
+      justify-content: center; 
+  }
   
   .section-title { font-size: 32px; line-height: 1.2; margin-bottom: 12px; }
   .section-subtitle { font-size: 16px; line-height: 1.5; }
@@ -399,11 +412,10 @@ details[open] summary:after { content: '−'; }
   .steps-grid::-webkit-scrollbar, .trust-grid::-webkit-scrollbar { display: none; }
   
   .step-card, .trust-block {
-      flex: 0 0 85%; /* Visar kanten av nästa kort för att indikera swipe */
+      flex: 0 0 85%;
       scroll-snap-align: center;
   }
   
-  /* Gör stegen till tydliga "kort" på mobilen så swipe-känslan blir bäst */
   .step-card {
       background: white;
       padding: 32px 24px;
@@ -478,8 +490,9 @@ details[open] summary:after { content: '−'; }
 }
 
 @media(max-width:480px) {
-    .roi-card {padding: 24px;}
-    .roi-total-value {font-size: 28px;}
+    .hero h1 { font-size: 30px; } /* Ytterligare ett steg mindre på riktigt små skärmar */
+    .roi-card { padding: 24px 20px; } /* Kompaktare kalkylator på små skärmar */
+    .roi-total-value { font-size: 28px; }
     .email-preview {
         display: block; 
         white-space: normal; 
