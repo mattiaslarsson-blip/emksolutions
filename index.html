@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>EMK Solutions — Automatiserad mejlhantering för gymnastikföreningar</title>
-<meta name="description" content="EMK Solutions automatiserar er mejlhantering. Svarsutkast på föräldramejl — ni granskar och skickar. Specifikt byggt för gymnastikföreningar.">
+<title>EMK Solutions | Automatiserad mejlhantering för gymnastikföreningar</title>
+<meta name="description" content="EMK Solutions automatiserar er mejlhantering. Svarsutkast på föräldramejl, ni granskar och skickar. Specifikt byggt för gymnastikföreningar.">
 
-<meta property="og:title" content="EMK Solutions — Tid över till hallen, inte inkorgen">
+<meta property="og:title" content="EMK Solutions | Tid över till hallen, inte inkorgen">
 <meta property="og:description" content="Automatiserade svar för gymnastikföreningar. Vi hanterar frågor om köer, avgifter och grupper.">
 <meta property="og:image" content="https://images.unsplash.com/photo-1578322646660-3165384196c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80">
 <meta property="og:url" content="https://emksolutions.se">
@@ -60,7 +60,7 @@ h1,h2,h3,h4,h5,h6{
 /* ─── NAV ─── */
 .nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:0 24px;transition:all 0.3s ease;}
 .nav.scrolled{background:rgba(255,255,255,0.95);backdrop-filter:blur(16px);border-bottom:1px solid rgba(0,0,0,0.05);padding:0 24px;}
-.nav-inner{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;height:80px;}
+.nav-inner{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;height:80px; position:relative; z-index:1001;}
 
 .nav-logo{font-family:'Plus Jakarta Sans',sans-serif;font-size:22px;font-weight:800;color:white;letter-spacing:-0.5px;text-decoration: none; transition: color 0.3s;}
 .nav.scrolled .nav-logo {color: var(--blue);} 
@@ -72,8 +72,10 @@ h1,h2,h3,h4,h5,h6{
 .nav-links a.nav-item:hover{color:white;}
 .nav.scrolled .nav-links a.nav-item:hover{color:var(--accent);}
 
-.mobile-toggle{display:none;background:none;border:none;cursor:pointer;color:white;}
+.mobile-toggle{display:none;background:none;border:none;cursor:pointer;color:white; z-index:1002;}
 .nav.scrolled .mobile-toggle {color: var(--blue);}
+.nav.menu-open .mobile-toggle {color: var(--blue);}
+.nav.menu-open .nav-logo {color: var(--blue);}
 
 /* ─── BUTTONS ─── */
 .cta-btn{
@@ -123,7 +125,7 @@ h1,h2,h3,h4,h5,h6{
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
   animation: float 6s ease-in-out infinite;
 }
-.roi-card h3{color:white;font-size:20px;font-weight:600;margin-bottom:24px; text-align: center;}
+.roi-card h3{color:white;font-size:22px;font-weight:600;margin-bottom:24px; text-align: center;}
 
 .roi-toggle-container {
   display: flex; align-items: center; justify-content: center; gap: 16px; margin-bottom: 32px;
@@ -275,11 +277,10 @@ input:checked + .slider:before { transform: translateX(24px); }
 .gallery img{width:100%; height:240px; object-fit:cover; border-radius:16px; transition: transform 0.3s;}
 .gallery img:hover {transform: scale(1.02);}
 
-/* ─── NEW CTA SECTION (DARK BACKGROUND FIX) ─── */
+/* ─── NEW CTA SECTION ─── */
 .cta-section{
   padding:120px 24px;
   background-color: var(--blue);
-  /* Ny bakgrundsbild och gradient för CTA-sektionen */
   background-image: linear-gradient(to right, rgba(15, 23, 42, 0.95), rgba(30, 58, 138, 0.85)), url('https://images.unsplash.com/photo-1578322646660-3165384196c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');
   background-size: cover;
   background-position: center;
@@ -291,6 +292,26 @@ input:checked + .slider:before { transform: translateX(24px); }
     max-width: 1100px; margin: 0 auto; position: relative; z-index: 2;
 }
 .cta-content { color: white; text-align: left; }
+
+.cta-checks {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 32px;
+}
+.cta-check {
+    display: flex;
+    align-items: flex-start; /* Anpassad för att ikonen ska stanna i topp om texten bryts */
+    gap: 12px;
+    font-size: 15px;
+    color: white;
+    line-height: 1.5;
+}
+.cta-check i {
+    margin-top: 2px; /* Skapar en snygg linje mellan ikon och textraden */
+    flex-shrink: 0;
+}
+
 .cta-form-card {
     background: white; padding: 40px; border-radius: 24px;
     box-shadow: 0 25px 50px -12px rgba(0,0,0,0.3);
@@ -353,6 +374,9 @@ details[open] summary:after { content: '−'; }
     z-index: 999;
     display: none; 
     pointer-events: none;
+    transform: translateY(150px); 
+    opacity: 0;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
 }
 .mobile-sticky-cta a { 
     width: 100%; 
@@ -360,63 +384,96 @@ details[open] summary:after { content: '−'; }
     pointer-events: auto;
     box-shadow: 0 10px 30px -5px rgba(59, 130, 246, 0.5);
 }
+.mobile-sticky-cta.show-sticky {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+}
 
 /* ─── RESPONSIVE (MOBILE OPTIMIZATIONS) ─── */
 @media(max-width:960px){
-  .section { padding: 80px 24px; } /* Optimerad padding för mobil */
-  .hero { padding: 100px 24px 60px; }
+  .section { padding: 64px 24px; } 
   
-  .hero-grid{grid-template-columns:1fr;gap:60px;text-align:center;}
-  .hero h1{font-size:38px; line-height:1.15;} /* Tydligare radavstånd för huvudrubrik */
-  .hero-sub{margin-left:auto;margin-right:auto; font-size: 16px; line-height: 1.5;}
-  .hero-actions{justify-content:center;}
+  .hero { padding: 120px 24px 64px; }
+  .hero-grid { grid-template-columns:1fr; gap:56px; text-align:center; }
+  .hero-badge { margin-bottom: 24px; }
+  .hero h1 { font-size: 36px !important; line-height: 1.3 !important; margin-bottom: 20px !important; letter-spacing: -0.5px; }
+  .hero-sub { margin: 0 auto 36px !important; font-size: 16px !important; line-height: 1.6 !important; max-width: 95%; }
+  
+  .hero-actions { flex-direction: column; gap: 12px; width: 100%; max-width: 320px; margin: 0 auto; }
+  .hero-actions .cta-btn { width: 100%; justify-content: center; }
+  
+  .roi-card h3 { font-size: 26px !important; margin-bottom: 24px !important; line-height: 1.2 !important; }
   
   .section-title { font-size: 32px; line-height: 1.2; margin-bottom: 12px; }
   .section-subtitle { font-size: 16px; line-height: 1.5; }
   
-  .steps-grid, .trust-grid{grid-template-columns:1fr;}
+  /* CAROUSEL FÖR STEG OCH BYGGT FÖR FÖRENINGAR PÅ MOBIL */
+  .steps-grid, .trust-grid {
+      display: flex; flex-wrap: nowrap; overflow-x: auto; scroll-snap-type: x mandatory;
+      gap: 16px; padding-bottom: 24px; margin-left: -24px; margin-right: -24px;
+      padding-left: 24px; padding-right: 24px; -webkit-overflow-scrolling: touch;
+      scrollbar-width: none; 
+  }
+  .steps-grid::-webkit-scrollbar, .trust-grid::-webkit-scrollbar { display: none; }
   
-  /* Optimerad "Om oss" på mobil */
-  .about-flex{flex-direction:column; text-align:center; gap: 32px;} /* Column istället för column-reverse lägger bilden överst */
-  .about-photo { max-width: 220px; } /* Mindre bild på mobil */
-  .about-text h3 { font-size: 28px; line-height: 1.2; }
-  .about-text p { font-size: 16px; line-height: 1.6; }
-  .quote {border-left: none; border-top: 4px solid var(--accent); padding-top: 20px; padding-left: 0;}
+  .step-card, .trust-block { flex: 0 0 85%; scroll-snap-align: center; }
   
-  /* Ny design: Scrollbart galleri på mobil (Carousel) */
+  .step-card {
+      background: white; padding: 32px 24px; border-radius: 20px;
+      border: 1px solid #e2e8f0; box-shadow: 0 10px 20px -10px rgba(0,0,0,0.05);
+  }
+  
+  .slider-group input[type=range]::-webkit-slider-thumb{ width: 32px; height: 32px; }
+
+  .inbox-wrapper {
+      margin-left: -24px; margin-right: -24px; width: calc(100% + 48px); max-width: none;
+      border-radius: 0; border-left: none; border-right: none; box-shadow: 0 10px 20px -10px rgba(0,0,0,0.05);
+  }
+  
+  /* OPTIMERAD OM-SEKTION FÖR MOBIL (Vänsterställd och luftig) */
+  .about-flex { flex-direction: column; align-items: flex-start; text-align: left; gap: 24px; }
+  .about-image-wrapper { width: 100%; display: flex; justify-content: center; } /* Håller bara bilden centrerad */
+  .about-photo { max-width: 250px; } 
+  .about-text { width: 100%; }
+  .about-text h3 { font-size: 28px; line-height: 1.3; margin-bottom: 16px; text-align: left; }
+  .about-text p { font-size: 16px; line-height: 1.7; text-align: left; margin-bottom: 20px; }
+  .quote { border-left: 4px solid var(--accent); border-top: none; padding-top: 0; padding-left: 20px; text-align: left; margin: 24px 0; }
+  
   .gallery {
-      display: flex;
-      flex-wrap: nowrap;
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      gap: 16px;
-      padding-bottom: 20px;
-      margin-top: 40px;
-      -webkit-overflow-scrolling: touch;
-      scrollbar-width: none; /* Döljer scrollbar i Firefox */
+      display: flex; flex-wrap: nowrap; overflow-x: auto; scroll-snap-type: x mandatory;
+      gap: 16px; padding-bottom: 20px; margin-top: 40px; -webkit-overflow-scrolling: touch; scrollbar-width: none; 
   }
-  .gallery::-webkit-scrollbar { display: none; } /* Döljer scrollbar i Chrome/Safari */
-  .gallery img {
-      flex: 0 0 85%; /* Visar lite av nästa bild så man fattar att det går att swipa */
-      scroll-snap-align: center;
-      height: 300px;
-  }
+  .gallery::-webkit-scrollbar { display: none; } 
+  .gallery img { flex: 0 0 85%; scroll-snap-align: center; height: 300px; }
   
-  /* Mobile Menu */
   .mobile-toggle {display: block;}
   .nav-links {
-    position: absolute; top: 80px; left: 0; right: 0; background: white; 
-    flex-direction: column; padding: 24px; gap: 24px; box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-    transform: translateY(-150%); transition: transform 0.3s ease; z-index: 900;
+    position: fixed; top: 0; left: 0; right: 0; bottom: 0; height: 100vh;
+    background: rgba(255, 255, 255, 0.96); backdrop-filter: blur(16px);
+    flex-direction: column; justify-content: center; align-items: center; 
+    padding: 24px; gap: 40px; box-shadow: none; transform: translateY(-100%); 
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1); z-index: 900;
   }
   .nav-links.open {transform: translateY(0);}
-  .nav-links a.nav-item {font-size: 18px; color: var(--blue);}
+  .nav-links a.nav-item {font-size: 22px; font-weight: 600; color: var(--blue);}
   
   .solution-grid {grid-template-columns: 1fr;}
   
-  .cta-split { grid-template-columns: 1fr; gap: 40px; }
-  .cta-content { text-align: center; }
-  .cta-checks { justify-content: center; }
+  /* LÖSNINGEN FÖR MOBILA CTA-SEKTIONEN (Luftig och konsekvent) */
+  .cta-split { grid-template-columns: 1fr; gap: 48px; }
+  .cta-content { text-align: left; } /* Behåll vänsterställt för läsbarhet */
+  .cta-content p { margin: 0 0 28px 0; max-width: 100%; line-height: 1.6; font-size: 16px; }
+  
+  .cta-checks { 
+      margin: 0 0 32px 0 !important; 
+      width: 100%;
+      align-items: flex-start;
+  }
+  .cta-check { text-align: left; align-items: flex-start; } 
+  
+  .cta-content .cta-btn-lg { margin: 0 auto; width: 100%; max-width: 320px; justify-content: center; display: flex; }
+  .cta-form-card { padding: 32px 20px; }
   
   .footer-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
   .footer-bottom { flex-direction: column; gap: 24px; text-align: center; }
@@ -426,16 +483,12 @@ details[open] summary:after { content: '−'; }
 }
 
 @media(max-width:480px) {
-    .roi-card {padding: 24px;}
-    .roi-total-value {font-size: 28px;}
+    .hero h1 { font-size: 32px !important; } 
+    .roi-card { padding: 24px 20px; } 
+    .roi-total-value { font-size: 28px; }
     .email-preview {
-        display: block; 
-        white-space: normal; 
-        display: -webkit-box;
-        -webkit-line-clamp: 2;
-        -webkit-box-orient: vertical;
-        font-size: 13px;
-        margin-top: 4px;
+        display: block; white-space: normal; display: -webkit-box;
+        -webkit-line-clamp: 2; -webkit-box-orient: vertical; font-size: 13px; margin-top: 4px;
     }
     .footer-grid { grid-template-columns: 1fr; }
 }
@@ -461,7 +514,7 @@ details[open] summary:after { content: '−'; }
   </div>
 </nav>
 
-<section class="hero">
+<section class="hero" id="hero">
   <div class="hero-grid">
     <div>
       <div class="fade-up">
@@ -478,7 +531,7 @@ details[open] summary:after { content: '−'; }
             <a href="https://calendly.com/mattias-larsson-emkmarketing/motesbokning" target="_blank" class="cta-btn cta-btn-lg" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/mattias-larsson-emkmarketing/motesbokning'});return false;">Boka demo 15 min <i data-lucide="arrow-right" style="width:18px;"></i></a>
             <a href="#how" class="cta-btn secondary">Se hur det funkar</a>
         </div>
-        <span class="hero-note" style="color: rgba(255,255,255,0.5);">Pris från 2 950 kr/mån. Ingen bindningstid.</span>
+        <span class="hero-note" style="color: rgba(255,255,255,0.5);">Pris 2 495 kr/mån. Ingen bindningstid.</span>
       </div>
     </div>
 
@@ -542,7 +595,7 @@ details[open] summary:after { content: '−'; }
           </div>
         </div>
         
-        <a href="https://calendly.com/mattias-larsson-emkmarketing/motesbokning" target="_blank" class="roi-cta" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/mattias-larsson-emkmarketing/motesbokning'});return false;">Spara resurser nu — boka demo <i data-lucide="chevron-right" style="width:16px;"></i></a>
+        <a href="https://calendly.com/mattias-larsson-emkmarketing/motesbokning" target="_blank" class="roi-cta" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/mattias-larsson-emkmarketing/motesbokning'});return false;">Spara resurser nu, boka demo <i data-lucide="chevron-right" style="width:16px;"></i></a>
       </div>
     </div>
   </div>
@@ -552,7 +605,7 @@ details[open] summary:after { content: '−'; }
   <div class="section-inner">
     <div class="section-header fade-up">
       <h2 class="section-title">Tre steg till en tom inkorg</h2>
-      <p class="section-subtitle">Vi kombinerar AI med era föreningsregler för att skapa perfekta svar.</p>
+      <p class="section-subtitle">Från mejl till färdigt svar, utan att kansliet lyfter ett finger.</p>
     </div>
     
     <div class="steps-grid">
@@ -562,7 +615,7 @@ details[open] summary:after { content: '−'; }
             <span class="step-num">01</span>
         </div>
         <h3>Mejl kommer in</h3>
-        <p>En förälder mejlar om lediga platser, priser eller avbokning. Systemet läser mejlet och förstår kontexten direkt.</p>
+        <p>En förälder mejlar en söndag kväll och undrar om det finns plats i gruppen för 7-åringar. Systemet läser mejlet, förstår frågan och slår upp rätt info direkt.</p>
       </div>
       
       <div class="step-card fade-up" style="transition-delay:0.15s">
@@ -570,8 +623,8 @@ details[open] summary:after { content: '−'; }
             <div class="step-icon-box"><i data-lucide="sparkles"></i></div>
             <span class="step-num">02</span>
         </div>
-        <h3>Utkast i Gmail / Outlook</h3>
-        <p>Ett färdigt svarsutkast hamnar i er vanliga "Utkast"-mapp. Vi stödjer de vanligaste klienterna direkt.</p>
+        <h3>Svarsutkast på sekunder</h3>
+        <p>När kansliet öppnar på måndag morgon ligger ett färdigt, vänligt svar redan i utkastmappen i Gmail eller Outlook. Rätt info, rätt ton.</p>
         
         <div style="display:flex; gap:16px; margin-top:16px; align-items:center;">
             <div style="display:flex; align-items:center; gap:6px; background:white; padding:6px 12px; border-radius:8px; border:1px solid #e2e8f0; font-weight:600; font-size:13px; color:#444;">
@@ -590,15 +643,15 @@ details[open] summary:after { content: '−'; }
             <div class="step-icon-box"><i data-lucide="send"></i></div>
             <span class="step-num">03</span>
         </div>
-        <h3>Ni godkänner</h3>
-        <p>Ni kastar ett öga på utkastet och trycker "Skicka". Det som tog 15 minuter att kolla upp och skriva tar nu 10 sekunder att granska.</p>
+        <h3>10 sekunder istället för 15 minuter</h3>
+        <p>Ni kastar ett öga, trycker Skicka. Klart. Det som tidigare krävde att någon letade upp grupper, tider och priser manuellt tar nu en snabb granskning.</p>
       </div>
     </div>
 
   </div>
 </section>
 
-<section class="section bg-blue" style="background:#0f172a; padding: 80px 24px;">
+<section class="section bg-blue" style="background:#0f172a;">
     <div class="section-inner integration-grid" style="display:grid; grid-template-columns: 1fr 1fr; gap:64px; align-items:center;">
         
         <div class="fade-up">
@@ -617,7 +670,7 @@ details[open] summary:after { content: '−'; }
                     <i data-lucide="search" style="width:18px;"></i> Exempel: "Trupp Röd 2"
                 </h4>
                 <p style="color:#94a3b8; font-size:15px; margin-bottom:0;">
-                    Om en förälder frågar om <em>"Trupp Röd 2"</em> vet systemet direkt vem som tränar gruppen, vilken hall de är i och vilka tider som gäller – eftersom vi har datan. Svaret innehåller tränarens kontaktuppgifter och hallinfo automatiskt.
+                    Om en förälder frågar om <em>"Trupp Röd 2"</em> vet systemet direkt vem som tränar gruppen, vilken hall de är i och vilka tider som gäller eftersom vi har datan. Svaret innehåller tränarens kontaktuppgifter och hallinfo automatiskt.
                 </p>
             </div>
         </div>
@@ -756,18 +809,18 @@ details[open] summary:after { content: '−'; }
     <div class="trust-grid">
       <div class="trust-block fade-up">
         <div class="trust-block-icon"><i data-lucide="target"></i></div>
-        <h3>Gymnastik i DNA:t</h3>
-        <p>Systemet förstår skillnaden på trupp-, rytmiskt-, multigymnastik-, artistiskgymnastik, terminsanmälan och köplatser. Det är inte en generell chatbot, det är er digitala kanslist.</p>
+        <h3>Byggt för gymnastik, inget annat</h3>
+        <p>Oavsett om ni kör trupp, rytmisk, artistisk, trampolin, parkour eller barngymnastik. Systemet förstår era grupper, terminsanmälan, köplatser och uppflyttningar. Byggt för era frågor, inte generella.</p>
       </div>
       <div class="trust-block fade-up" style="transition-delay:0.1s">
         <div class="trust-block-icon"><i data-lucide="lock"></i></div>
-        <h3>Total kontroll</h3>
-        <p>Ni är alltid "human-in-the-loop". Inget skickas utan att ni trycker på knappen. Ni behåller kontrollen över tonen och innehållet.</p>
+        <h3>Ni bestämmer, alltid</h3>
+        <p>Inget mejl lämnar er inkorg utan att ni har sett det och godkänt det. Ni har alltid sista ordet om vad som skickas och hur det låter.</p>
       </div>
       <div class="trust-block fade-up" style="transition-delay:0.2s">
         <div class="trust-block-icon"><i data-lucide="zap"></i></div>
         <h3>Blixtsnabb start</h3>
-        <p>Inga långa IT-projekt. Ni fyller i ett formulär med er info. Vi konfigurerar systemet. Inom 5 dagar är ni igång.</p>
+        <p>Ni fyller i ett formulär, vi gör resten. Inget stort IT-projekt och inga långa väntetider. Inom 5 dagar svarar systemet på era mejl.</p>
       </div>
     </div>
   </div>
@@ -778,14 +831,14 @@ details[open] summary:after { content: '−'; }
     
     <div class="about-flex fade-up">
       <div class="about-image-wrapper">
-        <img class="about-photo" loading="lazy" src="Mattiasrund.png" alt="Mattias Larsson — EMK Solutions grundare">
+        <img class="about-photo" loading="lazy" src="Mattiasrund.png" alt="Mattias Larsson, EMK Solutions grundare">
       </div>
       
       <div class="about-text">
-        <h3>Från gymnastikmattan till kod</h3>
-        <p><strong>Jag heter Mattias Larsson</strong>, före detta landslagsgymnast och grundare av EMK Solutions. Gymnastiken har gett mig allt och jag vet hur mycket ideellt slit som ligger bakom varje volt.</p>
-        <p class="quote">"Jag såg hur kanslier drunknade i mejl om samma saker. Lediga platser? Priser? När startar terminen? Det tog tid från det som faktiskt spelar roll: ungdomarna."</p>
-        <p>Därför byggde jag EMK. För att ge föreningarna tiden tillbaka.</p>
+        <h3>Jag har sett hur det ser ut på kansliet</h3>
+        <p><strong>Jag heter Mattias Larsson.</strong> Före detta landslagsgymnast och grundare av EMK Solutions. Jag har jobbat med föreningar och idrottsverksamheter i flera år och vet hur mycket jobb som ligger bakom kulisserna. Och jag vet att kansliet ofta fastnar i mejl istället för att hinna med allt annat som behöver göras.</p>
+        <p class="quote">"Samma frågor, om och om igen. Lediga platser, priser, terminsstart. Tiden gick till inkorgen när den behövdes någon annanstans."</p>
+        <p>EMK är byggt för att ge er den tiden tillbaka. Inte så ni kan jobba mer, utan så ni kan lägga den där det faktiskt gör skillnad.</p>
       </div>
     </div>
     
@@ -822,7 +875,7 @@ details[open] summary:after { content: '−'; }
             <details>
                 <summary>Vad kostar det?</summary>
                 <div class="faq-content">
-                    Priset börjar från <strong>2 950 kr per månad</strong> för mindre föreningar. Priset skalas baserat på er storlek och mejlvolym. Vi har ingen bindningstid – vi vill att ni stannar för att ni är nöjda, inte för att ni måste.
+                    Priset är <strong>2 495 kr per månad</strong>. Priset kan i vissa fall skalas baserat på er storlek och extrema mejlvolymer, men detta är grunden. Vi har ingen bindningstid, vi vill att ni stannar för att ni är nöjda, inte för att ni måste.
                 </div>
             </details>
 
@@ -840,19 +893,22 @@ details[open] summary:after { content: '−'; }
   <div class="cta-inner">
     <div class="cta-split">
         <div class="cta-content fade-up">
-            <h2>Redo att slippa mejlkön?</h2>
-            <p>Välj det sätt som passar er bäst. Boka en demo direkt eller be oss ringa upp er när det passar.</p>
+            <h2>Vill ni ha mejlsvaren klara när ni kommer till kansliet?</h2>
+            <p>Just nu tar vi in ett begränsat antal nya föreningar per kvartal. Boka 15 minuter så visar vi hur det ser ut med era egna mejl.</p>
             
-            <div class="cta-checks" style="justify-content: flex-start; margin-bottom: 32px;">
-                <div class="cta-check"><i data-lucide="check" style="width:16px;height:16px;color:var(--green);stroke-width:3;"></i><span>Ingen bindningstid</span></div>
-                <div class="cta-check"><i data-lucide="check" style="width:16px;height:16px;color:var(--green);stroke-width:3;"></i><span>Igång på 5 dagar</span></div>
+            <div class="cta-checks">
+                <div class="cta-check"><i data-lucide="check" style="width:18px;height:18px;color:var(--green);stroke-width:3; flex-shrink:0;"></i><span>Byggt i samarbete med svenska gymnastikföreningar</span></div>
+                <div class="cta-check"><i data-lucide="check" style="width:18px;height:18px;color:var(--green);stroke-width:3; flex-shrink:0;"></i><span>Igång på 5 dagar</span></div>
+                <div class="cta-check"><i data-lucide="check" style="width:18px;height:18px;color:var(--green);stroke-width:3; flex-shrink:0;"></i><span>Ingen bindningstid</span></div>
+                <div class="cta-check"><i data-lucide="check" style="width:18px;height:18px;color:var(--green);stroke-width:3; flex-shrink:0;"></i><span>Ni godkänner varje svar innan det skickas</span></div>
+                <div class="cta-check"><i data-lucide="check" style="width:18px;height:18px;color:var(--green);stroke-width:3; flex-shrink:0;"></i><span>Funkar med Gmail och Outlook</span></div>
             </div>
 
             <a href="https://calendly.com/mattias-larsson-emkmarketing/motesbokning" target="_blank" class="cta-btn cta-btn-lg" style="background:white; color:var(--blue); box-shadow:none;" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/mattias-larsson-emkmarketing/motesbokning'});return false;">Boka demo (15 min)</a>
         </div>
 
         <div class="cta-form-card fade-up" style="transition-delay: 0.1s;">
-            <h3 style="color:#0f172a; font-size:22px; margin-bottom:16px; text-align:center;">Låt oss ringa er</h3>
+            <h3 style="color:#0f172a; font-size:22px; margin-bottom:16px; text-align:center;">Vill ni bli uppringda istället?</h3>
             
             <form action="PASTE_YOUR_FORMSPREE_LINK_HERE" method="POST">
                 <div class="form-group">
@@ -870,13 +926,13 @@ details[open] summary:after { content: '−'; }
                 <button type="submit" class="cta-btn full-width" style="margin-top:8px;">Bli uppringd</button>
             </form>
             
-            <p style="font-size:12px; color:#94a3b8; text-align:center; margin-top:16px;">Vi använder era uppgifter endast för att kontakta er.</p>
+            <p style="font-size:12px; color:#94a3b8; text-align:center; margin-top:16px;">Vi ringer inom 24 timmar. Inga säljsamtal, bara en rak genomgång.</p>
         </div>
     </div>
   </div>
 </section>
 
-<div class="mobile-sticky-cta">
+<div class="mobile-sticky-cta" id="mobile-sticky-cta">
     <a href="https://calendly.com/mattias-larsson-emkmarketing/motesbokning" target="_blank" class="cta-btn cta-btn-sm" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/mattias-larsson-emkmarketing/motesbokning'});return false;">Boka demo (15 min)</a>
 </div>
 
@@ -935,9 +991,11 @@ lucide.createIcons();
 // ─── MOBILE NAV ───
 const mobileToggle = document.getElementById('mobile-toggle');
 const navLinks = document.getElementById('nav-links');
+const nav = document.getElementById('nav');
 
 mobileToggle.addEventListener('click', () => {
     navLinks.classList.toggle('open');
+    nav.classList.toggle('menu-open');
     const icon = navLinks.classList.contains('open') ? 'x' : 'menu';
     mobileToggle.innerHTML = `<i data-lucide="${icon}" style="width:28px;height:28px;"></i>`;
     lucide.createIcons();
@@ -946,13 +1004,13 @@ mobileToggle.addEventListener('click', () => {
 document.querySelectorAll('.nav-links a').forEach(link => {
     link.addEventListener('click', () => {
         navLinks.classList.remove('open');
+        nav.classList.remove('menu-open');
         mobileToggle.innerHTML = `<i data-lucide="menu" style="width:28px;height:28px;"></i>`;
         lucide.createIcons();
     });
 });
 
 // ─── OPTIMIZED NAV SCROLL ───
-const nav = document.getElementById('nav');
 let isScrolled = false;
 
 window.addEventListener('scroll', () => {
@@ -977,6 +1035,27 @@ const observer = new IntersectionObserver(function(entries){
 }, observerOptions);
 
 document.querySelectorAll('.fade-up').forEach(function(el){observer.observe(el);});
+
+// ─── SMART STICKY CTA (Döljer den i Heron och på botten) ───
+const stickyCta = document.getElementById('mobile-sticky-cta');
+const heroSection = document.getElementById('hero');
+const ctaSection = document.getElementById('cta');
+
+if(stickyCta && heroSection && ctaSection) {
+    window.addEventListener('scroll', () => {
+        const heroBottom = heroSection.getBoundingClientRect().bottom;
+        const ctaTop = ctaSection.getBoundingClientRect().top;
+        const windowHeight = window.innerHeight;
+
+        // Visa den svävande knappen ENDAST om användaren har skrollat förbi hero-sektionen
+        // helt (heroBottom < 0) och ännu inte har nått den sista CTA-sektionen.
+        if (heroBottom < 0 && ctaTop > windowHeight) {
+            stickyCta.classList.add('show-sticky');
+        } else {
+            stickyCta.classList.remove('show-sticky');
+        }
+    }, { passive: true });
+}
 
 // ─── ROI CALCULATOR ───
 const roiToggle = document.getElementById('roi-mode-toggle');
