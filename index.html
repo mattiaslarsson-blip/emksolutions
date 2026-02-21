@@ -277,7 +277,7 @@ input:checked + .slider:before { transform: translateX(24px); }
 .gallery img{width:100%; height:240px; object-fit:cover; border-radius:16px; transition: transform 0.3s;}
 .gallery img:hover {transform: scale(1.02);}
 
-/* ─── NEW CTA SECTION ─── */
+/* ─── CTA SECTION ─── */
 .cta-section{
   padding:120px 24px;
   background-color: var(--blue);
@@ -293,22 +293,34 @@ input:checked + .slider:before { transform: translateX(24px); }
 }
 .cta-content { color: white; text-align: left; }
 
+/* ─── CTA CONTENT SPACING FIX ─── */
+.cta-content h2 {
+    font-size: 36px;
+    line-height: 1.2;
+    margin-bottom: 20px;
+}
+.cta-content p {
+    font-size: 17px;
+    line-height: 1.6;
+    margin-bottom: 32px;
+    color: #cbd5e1;
+}
 .cta-checks {
     display: flex;
     flex-direction: column;
-    gap: 16px;
-    margin-bottom: 32px;
+    gap: 14px;
+    margin-bottom: 40px;
 }
 .cta-check {
     display: flex;
-    align-items: flex-start; /* Anpassad för att ikonen ska stanna i topp om texten bryts */
+    align-items: flex-start;
     gap: 12px;
     font-size: 15px;
-    color: white;
+    color: rgba(255,255,255,0.9);
     line-height: 1.5;
 }
 .cta-check i {
-    margin-top: 2px; /* Skapar en snygg linje mellan ikon och textraden */
+    margin-top: 3px;
     flex-shrink: 0;
 }
 
@@ -410,10 +422,10 @@ details[open] summary:after { content: '−'; }
   
   /* CAROUSEL FÖR STEG OCH BYGGT FÖR FÖRENINGAR PÅ MOBIL */
   .steps-grid, .trust-grid {
-      display: flex; flex-wrap: nowrap; overflow-x: auto; scroll-snap-type: x mandatory;
+      display: flex; flex-wrap: nowrap; overflow-x: auto; scroll-snap-type: x proximity;
       gap: 16px; padding-bottom: 24px; margin-left: -24px; margin-right: -24px;
       padding-left: 24px; padding-right: 24px; -webkit-overflow-scrolling: touch;
-      scrollbar-width: none; 
+      scrollbar-width: none; touch-action: pan-y;
   }
   .steps-grid::-webkit-scrollbar, .trust-grid::-webkit-scrollbar { display: none; }
   
@@ -431,9 +443,9 @@ details[open] summary:after { content: '−'; }
       border-radius: 0; border-left: none; border-right: none; box-shadow: 0 10px 20px -10px rgba(0,0,0,0.05);
   }
   
-  /* OPTIMERAD OM-SEKTION FÖR MOBIL (Vänsterställd och luftig) */
+  /* OPTIMERAD OM-SEKTION FÖR MOBIL */
   .about-flex { flex-direction: column; align-items: flex-start; text-align: left; gap: 24px; }
-  .about-image-wrapper { width: 100%; display: flex; justify-content: center; } /* Håller bara bilden centrerad */
+  .about-image-wrapper { width: 100%; display: flex; justify-content: center; }
   .about-photo { max-width: 250px; } 
   .about-text { width: 100%; }
   .about-text h3 { font-size: 28px; line-height: 1.3; margin-bottom: 16px; text-align: left; }
@@ -441,8 +453,9 @@ details[open] summary:after { content: '−'; }
   .quote { border-left: 4px solid var(--accent); border-top: none; padding-top: 0; padding-left: 20px; text-align: left; margin: 24px 0; }
   
   .gallery {
-      display: flex; flex-wrap: nowrap; overflow-x: auto; scroll-snap-type: x mandatory;
-      gap: 16px; padding-bottom: 20px; margin-top: 40px; -webkit-overflow-scrolling: touch; scrollbar-width: none; 
+      display: flex; flex-wrap: nowrap; overflow-x: auto; scroll-snap-type: x proximity;
+      gap: 16px; padding-bottom: 20px; margin-top: 40px; -webkit-overflow-scrolling: touch; 
+      scrollbar-width: none; touch-action: pan-y;
   }
   .gallery::-webkit-scrollbar { display: none; } 
   .gallery img { flex: 0 0 85%; scroll-snap-align: center; height: 300px; }
@@ -460,17 +473,13 @@ details[open] summary:after { content: '−'; }
   
   .solution-grid {grid-template-columns: 1fr;}
   
-  /* LÖSNINGEN FÖR MOBILA CTA-SEKTIONEN (Luftig och konsekvent) */
+  /* CTA MOBIL SPACING */
   .cta-split { grid-template-columns: 1fr; gap: 48px; }
-  .cta-content { text-align: left; } /* Behåll vänsterställt för läsbarhet */
-  .cta-content p { margin: 0 0 28px 0; max-width: 100%; line-height: 1.6; font-size: 16px; }
-  
-  .cta-checks { 
-      margin: 0 0 32px 0 !important; 
-      width: 100%;
-      align-items: flex-start;
-  }
-  .cta-check { text-align: left; align-items: flex-start; } 
+  .cta-content { text-align: left; }
+  .cta-content h2 { font-size: 28px; margin-bottom: 16px; }
+  .cta-content p { font-size: 15px; margin-bottom: 24px; }
+  .cta-checks { gap: 12px; margin-bottom: 32px; align-items: flex-start; width: 100%; }
+  .cta-check { font-size: 14px; text-align: left; align-items: flex-start; }
   
   .cta-content .cta-btn-lg { margin: 0 auto; width: 100%; max-width: 320px; justify-content: center; display: flex; }
   .cta-form-card { padding: 32px 20px; }
@@ -810,7 +819,7 @@ details[open] summary:after { content: '−'; }
       <div class="trust-block fade-up">
         <div class="trust-block-icon"><i data-lucide="target"></i></div>
         <h3>Byggt för gymnastik, inget annat</h3>
-        <p>Oavsett om ni kör trupp, rytmisk, artistisk, trampolin, parkour eller barngymnastik. Systemet förstår era grupper, terminsanmälan, köplatser och uppflyttningar. Byggt för era frågor, inte generella.</p>
+        <p>Oavsett om det handlar om trupp, rytmisk, artistisk, trampolin, parkour eller barngymnastik. Systemet förstår era grupper, terminsanmälan, köplatser och uppflyttningar. Byggt för era frågor, inte generella.</p>
       </div>
       <div class="trust-block fade-up" style="transition-delay:0.1s">
         <div class="trust-block-icon"><i data-lucide="lock"></i></div>
@@ -899,6 +908,7 @@ details[open] summary:after { content: '−'; }
             <div class="cta-checks">
                 <div class="cta-check"><i data-lucide="check" style="width:18px;height:18px;color:var(--green);stroke-width:3; flex-shrink:0;"></i><span>Byggt i samarbete med svenska gymnastikföreningar</span></div>
                 <div class="cta-check"><i data-lucide="check" style="width:18px;height:18px;color:var(--green);stroke-width:3; flex-shrink:0;"></i><span>Igång på 5 dagar</span></div>
+                <div class="cta-check"><i data-lucide="check" style="width:18px;height:18px;color:var(--green);stroke-width:3; flex-shrink:0;"></i><span>GDPR-säkrat med data inom EU</span></div>
                 <div class="cta-check"><i data-lucide="check" style="width:18px;height:18px;color:var(--green);stroke-width:3; flex-shrink:0;"></i><span>Ingen bindningstid</span></div>
                 <div class="cta-check"><i data-lucide="check" style="width:18px;height:18px;color:var(--green);stroke-width:3; flex-shrink:0;"></i><span>Ni godkänner varje svar innan det skickas</span></div>
                 <div class="cta-check"><i data-lucide="check" style="width:18px;height:18px;color:var(--green);stroke-width:3; flex-shrink:0;"></i><span>Funkar med Gmail och Outlook</span></div>
@@ -1036,7 +1046,7 @@ const observer = new IntersectionObserver(function(entries){
 
 document.querySelectorAll('.fade-up').forEach(function(el){observer.observe(el);});
 
-// ─── SMART STICKY CTA (Döljer den i Heron och på botten) ───
+// ─── SMART STICKY CTA ───
 const stickyCta = document.getElementById('mobile-sticky-cta');
 const heroSection = document.getElementById('hero');
 const ctaSection = document.getElementById('cta');
@@ -1047,8 +1057,6 @@ if(stickyCta && heroSection && ctaSection) {
         const ctaTop = ctaSection.getBoundingClientRect().top;
         const windowHeight = window.innerHeight;
 
-        // Visa den svävande knappen ENDAST om användaren har skrollat förbi hero-sektionen
-        // helt (heroBottom < 0) och ännu inte har nått den sista CTA-sektionen.
         if (heroBottom < 0 && ctaTop > windowHeight) {
             stickyCta.classList.add('show-sticky');
         } else {
@@ -1095,7 +1103,6 @@ function updateROI(){
   const salary = parseInt(salarySlider.value);
   salaryVal.textContent = formatSEK(salary) + ' kr';
 
-  // Money Calc
   const hourlyCost = (salary * 1.55) / 165;
   const monthlyCost = hours * 21 * hourlyCost; 
   const savingMoney = monthlyCost * 0.9; 
@@ -1105,7 +1112,6 @@ function updateROI(){
   document.getElementById('save-val').textContent = '−' + formatSEK(Math.round(savingMoney)) + ' kr';
   document.getElementById('year-val').textContent = formatSEK(Math.round(yearlyMoney)) + ' kr';
 
-  // Time Calc
   const monthlyHours = hours * 21;
   const savedHoursMonth = monthlyHours * 0.9;
   const savedHoursYear = savedHoursMonth * 12;
