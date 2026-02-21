@@ -354,6 +354,8 @@ details[open] summary:after { content: '−'; }
     z-index: 999;
     display: none; 
     pointer-events: none;
+    transform: translateY(150px); /* Dold som standard */
+    opacity: 0;
     transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
 }
 .mobile-sticky-cta a { 
@@ -362,21 +364,22 @@ details[open] summary:after { content: '−'; }
     pointer-events: auto;
     box-shadow: 0 10px 30px -5px rgba(59, 130, 246, 0.5);
 }
-.mobile-sticky-cta.hidden {
-    transform: translateY(150px);
-    opacity: 0;
-    pointer-events: none;
+.mobile-sticky-cta.show-sticky {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
 }
 
 /* ─── RESPONSIVE (MOBILE OPTIMIZATIONS) ─── */
 @media(max-width:960px){
   .section { padding: 64px 24px; } 
   
-  /* UPPDATERAD HERO PÅ MOBIL */
-  .hero { padding: 110px 24px 64px; }
-  .hero-grid{grid-template-columns:1fr; gap:48px; text-align:center;} /* Mer luft mellan text och kalkylator */
-  .hero h1{font-size:34px; line-height:1.2; margin-bottom:16px; letter-spacing:-0.5px;} /* Bättre radavstånd */
-  .hero-sub{margin: 0 auto 32px; font-size: 16px; line-height: 1.6; max-width: 90%;}
+  /* UPPDATERAD HERO PÅ MOBIL - MER LUFT OCH BÄTTRE TEXT */
+  .hero { padding: 120px 24px 64px; }
+  .hero-grid{grid-template-columns:1fr; gap:56px; text-align:center;}
+  .hero-badge { margin-bottom: 24px; }
+  .hero h1{font-size:36px; line-height:1.25; margin-bottom:20px; letter-spacing:-0.5px;}
+  .hero-sub{margin: 0 auto 36px; font-size: 16px; line-height: 1.6; max-width: 95%;}
   
   /* STAPLADE KNAPPAR I HERO PÅ MOBIL */
   .hero-actions { 
@@ -490,8 +493,9 @@ details[open] summary:after { content: '−'; }
 }
 
 @media(max-width:480px) {
-    .hero h1 { font-size: 30px; } /* Ytterligare ett steg mindre på riktigt små skärmar */
-    .roi-card { padding: 24px 20px; } /* Kompaktare kalkylator på små skärmar */
+    .hero h1 { font-size: 32px; } 
+    .hero-sub { font-size: 15px; margin-bottom: 32px; }
+    .roi-card { padding: 24px 20px; } 
     .roi-total-value { font-size: 28px; }
     .email-preview {
         display: block; 
@@ -526,7 +530,7 @@ details[open] summary:after { content: '−'; }
   </div>
 </nav>
 
-<section class="hero">
+<section class="hero" id="hero">
   <div class="hero-grid">
     <div>
       <div class="fade-up">
@@ -1045,22 +1049,25 @@ const observer = new IntersectionObserver(function(entries){
 
 document.querySelectorAll('.fade-up').forEach(function(el){observer.observe(el);});
 
-// ─── SMART STICKY CTA ───
+// ─── SMART STICKY CTA (Döljer den i Heron och på botten) ───
 const stickyCta = document.getElementById('mobile-sticky-cta');
+const heroSection = document.getElementById('hero');
 const ctaSection = document.getElementById('cta');
 
-if(stickyCta && ctaSection) {
-    const ctaObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if(entry.isIntersecting) {
-                stickyCta.classList.add('hidden');
-            } else {
-                stickyCta.classList.remove('hidden');
-            }
-        });
-    }, { threshold: 0.1 }); 
-    
-    ctaObserver.observe(ctaSection);
+if(stickyCta && heroSection && ctaSection) {
+    window.addEventListener('scroll', () => {
+        const heroBottom = heroSection.getBoundingClientRect().bottom;
+        const ctaTop = ctaSection.getBoundingClientRect().top;
+        const windowHeight = window.innerHeight;
+
+        // Visa den svävande knappen ENDAST om användaren har skrollat förbi hero-sektionen
+        // och ännu inte har nått den sista CTA-sektionen (formuläret).
+        if (heroBottom < 100 && ctaTop > windowHeight) {
+            stickyCta.classList.add('show-sticky');
+        } else {
+            stickyCta.classList.remove('show-sticky');
+        }
+    }, { passive: true });
 }
 
 // ─── ROI CALCULATOR ───
