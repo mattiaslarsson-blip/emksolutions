@@ -301,10 +301,15 @@ input:checked + .slider:before { transform: translateX(24px); }
 }
 .cta-check {
     display: flex;
-    align-items: center;
+    align-items: flex-start; /* Anpassad för att ikonen ska stanna i topp om texten bryts */
     gap: 12px;
     font-size: 15px;
     color: white;
+    line-height: 1.5;
+}
+.cta-check i {
+    margin-top: 2px; /* Skapar en snygg linje mellan ikon och textraden */
+    flex-shrink: 0;
 }
 
 .cta-form-card {
@@ -389,7 +394,6 @@ details[open] summary:after { content: '−'; }
 @media(max-width:960px){
   .section { padding: 64px 24px; } 
   
-  /* TVINGAR BÄTTRE TEXTSTORLEK/LUFT I HERO PÅ MOBIL */
   .hero { padding: 120px 24px 64px; }
   .hero-grid { grid-template-columns:1fr; gap:56px; text-align:center; }
   .hero-badge { margin-bottom: 24px; }
@@ -399,7 +403,6 @@ details[open] summary:after { content: '−'; }
   .hero-actions { flex-direction: column; gap: 12px; width: 100%; max-width: 320px; margin: 0 auto; }
   .hero-actions .cta-btn { width: 100%; justify-content: center; }
   
-  /* TVINGAR BÄTTRE STORLEK PÅ ROI-RUBRIKEN PÅ MOBIL */
   .roi-card h3 { font-size: 26px !important; margin-bottom: 24px !important; line-height: 1.2 !important; }
   
   .section-title { font-size: 32px; line-height: 1.2; margin-bottom: 12px; }
@@ -428,11 +431,14 @@ details[open] summary:after { content: '−'; }
       border-radius: 0; border-left: none; border-right: none; box-shadow: 0 10px 20px -10px rgba(0,0,0,0.05);
   }
   
-  .about-flex{flex-direction:column; text-align:center; gap: 32px;}
-  .about-photo { max-width: 220px; } 
-  .about-text h3 { font-size: 28px; line-height: 1.2; margin-bottom: 20px; }
-  .about-text p { font-size: 16px; line-height: 1.6; }
-  .quote {border-left: none; border-top: 4px solid var(--accent); padding-top: 20px; padding-left: 0; text-align: left;}
+  /* OPTIMERAD OM-SEKTION FÖR MOBIL (Vänsterställd och luftig) */
+  .about-flex { flex-direction: column; align-items: flex-start; text-align: left; gap: 24px; }
+  .about-image-wrapper { width: 100%; display: flex; justify-content: center; } /* Håller bara bilden centrerad */
+  .about-photo { max-width: 250px; } 
+  .about-text { width: 100%; }
+  .about-text h3 { font-size: 28px; line-height: 1.3; margin-bottom: 16px; text-align: left; }
+  .about-text p { font-size: 16px; line-height: 1.7; text-align: left; margin-bottom: 20px; }
+  .quote { border-left: 4px solid var(--accent); border-top: none; padding-top: 0; padding-left: 20px; text-align: left; margin: 24px 0; }
   
   .gallery {
       display: flex; flex-wrap: nowrap; overflow-x: auto; scroll-snap-type: x mandatory;
@@ -454,17 +460,17 @@ details[open] summary:after { content: '−'; }
   
   .solution-grid {grid-template-columns: 1fr;}
   
-  /* LÖSNINGEN FÖR MOBILA CTA-SEKTIONEN (Checklistan centrerad men snygg) */
+  /* LÖSNINGEN FÖR MOBILA CTA-SEKTIONEN (Luftig och konsekvent) */
   .cta-split { grid-template-columns: 1fr; gap: 48px; }
-  .cta-content { text-align: center; }
-  .cta-content p { margin: 0 auto 24px; max-width: 95%; }
+  .cta-content { text-align: left; } /* Behåll vänsterställt för läsbarhet */
+  .cta-content p { margin: 0 0 28px 0; max-width: 100%; line-height: 1.6; font-size: 16px; }
   
   .cta-checks { 
-      margin: 0 auto 32px auto !important; 
-      width: fit-content; /* Det här gör att boxen anpassar sig efter texten, och margin center centrerar hela boxen */
-      align-items: flex-start; /* Behåller listan vänsterställd inuti den centrerade boxen */
+      margin: 0 0 32px 0 !important; 
+      width: 100%;
+      align-items: flex-start;
   }
-  .cta-check { text-align: left; }
+  .cta-check { text-align: left; align-items: flex-start; } 
   
   .cta-content .cta-btn-lg { margin: 0 auto; width: 100%; max-width: 320px; justify-content: center; display: flex; }
   .cta-form-card { padding: 32px 20px; }
@@ -804,17 +810,17 @@ details[open] summary:after { content: '−'; }
       <div class="trust-block fade-up">
         <div class="trust-block-icon"><i data-lucide="target"></i></div>
         <h3>Byggt för gymnastik, inget annat</h3>
-        <p>Systemet vet skillnaden mellan trupp och rytmisk, mellan terminsanmälan och köplats. Det är byggt för era frågor, inte för att svara på allt möjligt.</p>
+        <p>Oavsett om ni kör trupp, rytmisk, artistisk, trampolin, parkour eller barngymnastik. Systemet förstår era grupper, terminsanmälan, köplatser och uppflyttningar. Byggt för era frågor, inte generella.</p>
       </div>
       <div class="trust-block fade-up" style="transition-delay:0.1s">
         <div class="trust-block-icon"><i data-lucide="lock"></i></div>
-        <h3>Ni bestämmer alltid</h3>
-        <p>Inget mejl lämnar er inkorg utan att ni sett det och godkänt det. Ni har alltid sista ordet om vad som skickas och hur det låter.</p>
+        <h3>Ni bestämmer, alltid</h3>
+        <p>Inget mejl lämnar er inkorg utan att ni har sett det och godkänt det. Ni har alltid sista ordet om vad som skickas och hur det låter.</p>
       </div>
       <div class="trust-block fade-up" style="transition-delay:0.2s">
         <div class="trust-block-icon"><i data-lucide="zap"></i></div>
         <h3>Blixtsnabb start</h3>
-        <p>Ni fyller i ett formulär, vi gör resten. Inget IT-projekt, inga konsulter, inga möten som drar ut på tiden. Inom 5 dagar svarar systemet på era mejl.</p>
+        <p>Ni fyller i ett formulär, vi gör resten. Inget stort IT-projekt och inga långa väntetider. Inom 5 dagar svarar systemet på era mejl.</p>
       </div>
     </div>
   </div>
@@ -1042,8 +1048,8 @@ if(stickyCta && heroSection && ctaSection) {
         const windowHeight = window.innerHeight;
 
         // Visa den svävande knappen ENDAST om användaren har skrollat förbi hero-sektionen
-        // och ännu inte har nått den sista CTA-sektionen (formuläret).
-        if (heroBottom < 100 && ctaTop > windowHeight) {
+        // helt (heroBottom < 0) och ännu inte har nått den sista CTA-sektionen.
+        if (heroBottom < 0 && ctaTop > windowHeight) {
             stickyCta.classList.add('show-sticky');
         } else {
             stickyCta.classList.remove('show-sticky');
