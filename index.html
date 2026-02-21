@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>EMK Solutions — Automatiserad mejlhantering för gymnastikföreningar</title>
-<meta name="description" content="EMK Solutions automatiserar er mejlhantering. Svarsutkast på föräldramejl — ni granskar och skickar. Specifikt byggt för gymnastikföreningar.">
+<title>EMK Solutions | Automatiserad mejlhantering för gymnastikföreningar</title>
+<meta name="description" content="EMK Solutions automatiserar er mejlhantering. Svarsutkast på föräldramejl, ni granskar och skickar. Specifikt byggt för gymnastikföreningar.">
 
-<meta property="og:title" content="EMK Solutions — Tid över till hallen, inte inkorgen">
+<meta property="og:title" content="EMK Solutions | Tid över till hallen, inte inkorgen">
 <meta property="og:description" content="Automatiserade svar för gymnastikföreningar. Vi hanterar frågor om köer, avgifter och grupper.">
 <meta property="og:image" content="https://images.unsplash.com/photo-1578322646660-3165384196c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80">
 <meta property="og:url" content="https://emksolutions.se">
@@ -277,7 +277,7 @@ input:checked + .slider:before { transform: translateX(24px); }
 .gallery img{width:100%; height:240px; object-fit:cover; border-radius:16px; transition: transform 0.3s;}
 .gallery img:hover {transform: scale(1.02);}
 
-/* ─── NEW CTA SECTION (DARK BACKGROUND FIX) ─── */
+/* ─── NEW CTA SECTION ─── */
 .cta-section{
   padding:120px 24px;
   background-color: var(--blue);
@@ -292,6 +292,21 @@ input:checked + .slider:before { transform: translateX(24px); }
     max-width: 1100px; margin: 0 auto; position: relative; z-index: 2;
 }
 .cta-content { color: white; text-align: left; }
+
+.cta-checks {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 32px;
+}
+.cta-check {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 15px;
+    color: white;
+}
+
 .cta-form-card {
     background: white; padding: 40px; border-radius: 24px;
     box-shadow: 0 25px 50px -12px rgba(0,0,0,0.3);
@@ -415,9 +430,9 @@ details[open] summary:after { content: '−'; }
   
   .about-flex{flex-direction:column; text-align:center; gap: 32px;}
   .about-photo { max-width: 220px; } 
-  .about-text h3 { font-size: 28px; line-height: 1.2; }
+  .about-text h3 { font-size: 28px; line-height: 1.2; margin-bottom: 20px; }
   .about-text p { font-size: 16px; line-height: 1.6; }
-  .quote {border-left: none; border-top: 4px solid var(--accent); padding-top: 20px; padding-left: 0;}
+  .quote {border-left: none; border-top: 4px solid var(--accent); padding-top: 20px; padding-left: 0; text-align: left;}
   
   .gallery {
       display: flex; flex-wrap: nowrap; overflow-x: auto; scroll-snap-type: x mandatory;
@@ -439,8 +454,20 @@ details[open] summary:after { content: '−'; }
   
   .solution-grid {grid-template-columns: 1fr;}
   
-  .cta-split { grid-template-columns: 1fr; gap: 40px; }
-  .cta-content { text-align: left; } /* Behåller vänsterställd text för listans skull på mobil */
+  /* LÖSNINGEN FÖR MOBILA CTA-SEKTIONEN (Checklistan centrerad men snygg) */
+  .cta-split { grid-template-columns: 1fr; gap: 48px; }
+  .cta-content { text-align: center; }
+  .cta-content p { margin: 0 auto 24px; max-width: 95%; }
+  
+  .cta-checks { 
+      margin: 0 auto 32px auto !important; 
+      width: fit-content; /* Det här gör att boxen anpassar sig efter texten, och margin center centrerar hela boxen */
+      align-items: flex-start; /* Behåller listan vänsterställd inuti den centrerade boxen */
+  }
+  .cta-check { text-align: left; }
+  
+  .cta-content .cta-btn-lg { margin: 0 auto; width: 100%; max-width: 320px; justify-content: center; display: flex; }
+  .cta-form-card { padding: 32px 20px; }
   
   .footer-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
   .footer-bottom { flex-direction: column; gap: 24px; text-align: center; }
@@ -562,7 +589,7 @@ details[open] summary:after { content: '−'; }
           </div>
         </div>
         
-        <a href="https://calendly.com/mattias-larsson-emkmarketing/motesbokning" target="_blank" class="roi-cta" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/mattias-larsson-emkmarketing/motesbokning'});return false;">Spara resurser nu — boka demo <i data-lucide="chevron-right" style="width:16px;"></i></a>
+        <a href="https://calendly.com/mattias-larsson-emkmarketing/motesbokning" target="_blank" class="roi-cta" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/mattias-larsson-emkmarketing/motesbokning'});return false;">Spara resurser nu, boka demo <i data-lucide="chevron-right" style="width:16px;"></i></a>
       </div>
     </div>
   </div>
@@ -572,7 +599,7 @@ details[open] summary:after { content: '−'; }
   <div class="section-inner">
     <div class="section-header fade-up">
       <h2 class="section-title">Tre steg till en tom inkorg</h2>
-      <p class="section-subtitle">Från mejl till färdigt svar — utan att kansliet lyfter ett finger.</p>
+      <p class="section-subtitle">Från mejl till färdigt svar, utan att kansliet lyfter ett finger.</p>
     </div>
     
     <div class="steps-grid">
@@ -591,7 +618,7 @@ details[open] summary:after { content: '−'; }
             <span class="step-num">02</span>
         </div>
         <h3>Svarsutkast på sekunder</h3>
-        <p>När kansliet öppnar på måndag morgon ligger ett färdigt, vänligt svar redan i Utkast-mappen — i Gmail eller Outlook. Rätt info, rätt ton.</p>
+        <p>När kansliet öppnar på måndag morgon ligger ett färdigt, vänligt svar redan i utkastmappen i Gmail eller Outlook. Rätt info, rätt ton.</p>
         
         <div style="display:flex; gap:16px; margin-top:16px; align-items:center;">
             <div style="display:flex; align-items:center; gap:6px; background:white; padding:6px 12px; border-radius:8px; border:1px solid #e2e8f0; font-weight:600; font-size:13px; color:#444;">
@@ -637,7 +664,7 @@ details[open] summary:after { content: '−'; }
                     <i data-lucide="search" style="width:18px;"></i> Exempel: "Trupp Röd 2"
                 </h4>
                 <p style="color:#94a3b8; font-size:15px; margin-bottom:0;">
-                    Om en förälder frågar om <em>"Trupp Röd 2"</em> vet systemet direkt vem som tränar gruppen, vilken hall de är i och vilka tider som gäller – eftersom vi har datan. Svaret innehåller tränarens kontaktuppgifter och hallinfo automatiskt.
+                    Om en förälder frågar om <em>"Trupp Röd 2"</em> vet systemet direkt vem som tränar gruppen, vilken hall de är i och vilka tider som gäller eftersom vi har datan. Svaret innehåller tränarens kontaktuppgifter och hallinfo automatiskt.
                 </p>
             </div>
         </div>
@@ -781,13 +808,13 @@ details[open] summary:after { content: '−'; }
       </div>
       <div class="trust-block fade-up" style="transition-delay:0.1s">
         <div class="trust-block-icon"><i data-lucide="lock"></i></div>
-        <h3>Ni bestämmer — alltid</h3>
+        <h3>Ni bestämmer alltid</h3>
         <p>Inget mejl lämnar er inkorg utan att ni sett det och godkänt det. Ni har alltid sista ordet om vad som skickas och hur det låter.</p>
       </div>
       <div class="trust-block fade-up" style="transition-delay:0.2s">
         <div class="trust-block-icon"><i data-lucide="zap"></i></div>
         <h3>Blixtsnabb start</h3>
-        <p>Ni fyller i ett formulär — vi gör resten. Inget IT-projekt, inga konsulter, inga möten som drar ut på tiden. Inom 5 dagar svarar systemet på era mejl.</p>
+        <p>Ni fyller i ett formulär, vi gör resten. Inget IT-projekt, inga konsulter, inga möten som drar ut på tiden. Inom 5 dagar svarar systemet på era mejl.</p>
       </div>
     </div>
   </div>
@@ -798,14 +825,14 @@ details[open] summary:after { content: '−'; }
     
     <div class="about-flex fade-up">
       <div class="about-image-wrapper">
-        <img class="about-photo" loading="lazy" src="Mattiasrund.png" alt="Mattias Larsson — EMK Solutions grundare">
+        <img class="about-photo" loading="lazy" src="Mattiasrund.png" alt="Mattias Larsson, EMK Solutions grundare">
       </div>
       
       <div class="about-text">
-        <h3>Från gymnastikmattan till kod</h3>
-        <p><strong>Jag heter Mattias Larsson</strong>, före detta landslagsgymnast och grundare av EMK Solutions. Gymnastiken har gett mig allt och jag vet hur mycket ideellt slit som ligger bakom varje volt.</p>
-        <p class="quote">"Jag såg hur kanslier drunknade i mejl om samma saker. Lediga platser? Priser? När startar terminen? Det tog tid från det som faktiskt spelar roll: ungdomarna."</p>
-        <p>Därför byggde jag EMK. För att ge föreningarna tiden tillbaka.</p>
+        <h3>Jag har sett hur det ser ut på kansliet</h3>
+        <p><strong>Jag heter Mattias Larsson.</strong> Före detta landslagsgymnast och grundare av EMK Solutions. Jag har jobbat med föreningar och idrottsverksamheter i flera år och vet hur mycket jobb som ligger bakom kulisserna. Och jag vet att kansliet ofta fastnar i mejl istället för att hinna med allt annat som behöver göras.</p>
+        <p class="quote">"Samma frågor, om och om igen. Lediga platser, priser, terminsstart. Tiden gick till inkorgen när den behövdes någon annanstans."</p>
+        <p>EMK är byggt för att ge er den tiden tillbaka. Inte så ni kan jobba mer, utan så ni kan lägga den där det faktiskt gör skillnad.</p>
       </div>
     </div>
     
@@ -842,7 +869,7 @@ details[open] summary:after { content: '−'; }
             <details>
                 <summary>Vad kostar det?</summary>
                 <div class="faq-content">
-                    Priset är <strong>2 495 kr per månad</strong>. Priset kan i vissa fall skalas baserat på er storlek och extrema mejlvolymer, men detta är grunden. Vi har ingen bindningstid – vi vill att ni stannar för att ni är nöjda, inte för att ni måste.
+                    Priset är <strong>2 495 kr per månad</strong>. Priset kan i vissa fall skalas baserat på er storlek och extrema mejlvolymer, men detta är grunden. Vi har ingen bindningstid, vi vill att ni stannar för att ni är nöjda, inte för att ni måste.
                 </div>
             </details>
 
@@ -863,12 +890,12 @@ details[open] summary:after { content: '−'; }
             <h2>Vill ni ha mejlsvaren klara när ni kommer till kansliet?</h2>
             <p>Just nu tar vi in ett begränsat antal nya föreningar per kvartal. Boka 15 minuter så visar vi hur det ser ut med era egna mejl.</p>
             
-            <div class="cta-checks" style="display: flex; flex-direction: column; gap: 14px; margin-bottom: 32px; align-items: flex-start;">
-                <div class="cta-check" style="display:flex; align-items:center; gap:10px;"><i data-lucide="check" style="width:18px;height:18px;color:var(--green);stroke-width:3; flex-shrink:0;"></i><span style="font-size:15px;">Byggt i samarbete med svenska gymnastikföreningar</span></div>
-                <div class="cta-check" style="display:flex; align-items:center; gap:10px;"><i data-lucide="check" style="width:18px;height:18px;color:var(--green);stroke-width:3; flex-shrink:0;"></i><span style="font-size:15px;">Igång på 5 dagar</span></div>
-                <div class="cta-check" style="display:flex; align-items:center; gap:10px;"><i data-lucide="check" style="width:18px;height:18px;color:var(--green);stroke-width:3; flex-shrink:0;"></i><span style="font-size:15px;">Ingen bindningstid</span></div>
-                <div class="cta-check" style="display:flex; align-items:center; gap:10px;"><i data-lucide="check" style="width:18px;height:18px;color:var(--green);stroke-width:3; flex-shrink:0;"></i><span style="font-size:15px;">Ni godkänner varje svar innan det skickas</span></div>
-                <div class="cta-check" style="display:flex; align-items:center; gap:10px;"><i data-lucide="check" style="width:18px;height:18px;color:var(--green);stroke-width:3; flex-shrink:0;"></i><span style="font-size:15px;">Funkar med Gmail och Outlook</span></div>
+            <div class="cta-checks">
+                <div class="cta-check"><i data-lucide="check" style="width:18px;height:18px;color:var(--green);stroke-width:3; flex-shrink:0;"></i><span>Byggt i samarbete med svenska gymnastikföreningar</span></div>
+                <div class="cta-check"><i data-lucide="check" style="width:18px;height:18px;color:var(--green);stroke-width:3; flex-shrink:0;"></i><span>Igång på 5 dagar</span></div>
+                <div class="cta-check"><i data-lucide="check" style="width:18px;height:18px;color:var(--green);stroke-width:3; flex-shrink:0;"></i><span>Ingen bindningstid</span></div>
+                <div class="cta-check"><i data-lucide="check" style="width:18px;height:18px;color:var(--green);stroke-width:3; flex-shrink:0;"></i><span>Ni godkänner varje svar innan det skickas</span></div>
+                <div class="cta-check"><i data-lucide="check" style="width:18px;height:18px;color:var(--green);stroke-width:3; flex-shrink:0;"></i><span>Funkar med Gmail och Outlook</span></div>
             </div>
 
             <a href="https://calendly.com/mattias-larsson-emkmarketing/motesbokning" target="_blank" class="cta-btn cta-btn-lg" style="background:white; color:var(--blue); box-shadow:none;" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/mattias-larsson-emkmarketing/motesbokning'});return false;">Boka demo (15 min)</a>
@@ -893,7 +920,7 @@ details[open] summary:after { content: '−'; }
                 <button type="submit" class="cta-btn full-width" style="margin-top:8px;">Bli uppringd</button>
             </form>
             
-            <p style="font-size:12px; color:#94a3b8; text-align:center; margin-top:16px;">Vi ringer inom 24 timmar. Inga säljsamtal — bara en rak genomgång.</p>
+            <p style="font-size:12px; color:#94a3b8; text-align:center; margin-top:16px;">Vi ringer inom 24 timmar. Inga säljsamtal, bara en rak genomgång.</p>
         </div>
     </div>
   </div>
