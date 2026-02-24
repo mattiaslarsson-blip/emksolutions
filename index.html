@@ -1,8 +1,19 @@
 <style>
-/* ─── NY "SÅ FUNKAR DET" - SPLIT LAYOUT ─── */
+/* ─── PREMIUM & MOBILANPASSAD "SÅ FUNKAR DET" ─── */
+:root {
+    --glass-bg: rgba(255, 255, 255, 0.7);
+    --glass-border: 1px solid rgba(255, 255, 255, 0.9);
+    --premium-shadow: 
+        0 20px 40px -12px rgba(0, 0, 0, 0.1),
+        0 0 0 1px rgba(0,0,0,0.02);
+    --accent-glow: 0 20px 40px -10px rgba(59, 130, 246, 0.25);
+}
+
 .modern-how {
     padding: 120px 24px;
-    background-color: #f8fafc;
+    background-color: #f8fafc; /* Behåller ljusgrå bakgrund för kontrast mot de vita elementen */
+    /* Alternativt: en mycket svag gradient för mer premium-känsla:
+    background: linear-gradient(to bottom right, #f8fafc, #f1f5f9); */
     font-family: 'Inter', sans-serif;
 }
 .modern-how-inner {
@@ -11,178 +22,236 @@
 }
 .mh-header {
     text-align: center;
-    margin-bottom: 64px;
+    margin-bottom: 72px;
 }
 .mh-title {
     font-family: 'Plus Jakarta Sans', sans-serif;
     font-size: 42px;
     font-weight: 800;
     color: #0f172a;
-    margin-bottom: 16px;
+    margin-bottom: 20px;
     letter-spacing: -1px;
+    line-height: 1.1;
 }
 .mh-subtitle {
-    font-size: 18px;
+    font-size: 20px;
     color: #64748b;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
 }
 
 .mh-grid {
     display: grid;
-    grid-template-columns: 1fr 1.2fr;
-    gap: 64px;
+    grid-template-columns: 1fr 1.3fr; /* Ger lite mer plats åt skärmen */
+    gap: 80px;
     align-items: center;
 }
 
-/* --- VÄNSTER: TABBAR/STEG --- */
+/* --- VÄNSTER: PREMIUM TABBAR --- */
 .mh-tabs {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 20px;
 }
 .mh-tab {
-    padding: 24px;
-    border-radius: 16px;
-    border: 2px solid transparent;
-    background: transparent;
+    padding: 28px;
+    border-radius: 20px;
+    /* Glassmorphism för inaktiva tabbar */
+    background: var(--glass-bg);
+    backdrop-filter: blur(8px);
+    border: var(--glass-border);
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     text-align: left;
+    position: relative;
 }
 .mh-tab:hover {
-    background: rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0.9);
+    transform: translateY(-2px);
 }
 .mh-tab.active {
     background: white;
-    border-color: #3b82f6;
-    box-shadow: 0 10px 30px -10px rgba(59, 130, 246, 0.15);
+    border-color: var(--accent);
+    box-shadow: var(--accent-glow); /* Blått "glow" */
+    transform: scale(1.02); /* Något större */
+    z-index: 2;
 }
 .mh-tab-header {
     display: flex;
     align-items: center;
-    gap: 16px;
-    margin-bottom: 8px;
+    gap: 18px;
+    margin-bottom: 12px;
 }
-.mh-step-num {
-    width: 32px;
-    height: 32px;
-    border-radius: 8px;
+.mh-step-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
     background: #f1f5f9;
-    color: #64748b;
+    color: #94a3b8;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-weight: 700;
-    font-size: 14px;
-    transition: all 0.3s;
+    transition: all 0.4s ease;
 }
-.mh-tab.active .mh-step-num {
-    background: #3b82f6;
+.mh-tab.active .mh-step-icon {
+    background: var(--accent);
     color: white;
+    box-shadow: 0 8px 16px -4px rgba(59, 130, 246, 0.4);
 }
 .mh-tab h3 {
     font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 20px;
+    font-size: 22px;
     font-weight: 700;
     color: #0f172a;
     margin: 0;
-    transition: color 0.3s;
 }
-.mh-tab.active h3 { color: #3b82f6; }
 .mh-tab p {
-    color: #64748b;
-    font-size: 15px;
-    line-height: 1.6;
+    color: #475569;
+    font-size: 16px;
+    line-height: 1.7;
     margin: 0;
-    padding-left: 48px;
-    opacity: 0.7;
-    transition: opacity 0.3s;
+    padding-left: 62px; /* Justerat för större ikon */
 }
-.mh-tab.active p { opacity: 1; }
 
-/* --- HÖGER: VISUELL MOCKUP --- */
+/* --- HÖGER: VISUELL MOCKUP (PREMIUM) --- */
 .mh-visual {
     position: relative;
-    background: white;
-    border-radius: 20px;
-    border: 1px solid #e2e8f0;
-    box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.05);
-    height: 400px; /* Fast höjd så att det inte hoppar */
+    /* Premium "fönster"-känsla */
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255,255,255,0.6);
+    border-radius: 24px;
+    box-shadow: var(--premium-shadow);
+    height: 480px; /* Lite högre för att kännas rymligare */
     overflow: hidden;
+    transition: all 0.3s ease;
 }
+/* Lägg till en subtil blå "ram" när AI-steget är aktivt för extra effekt */
+.mh-visual.ai-active {
+    box-shadow: var(--accent-glow), inset 0 0 0 1px rgba(59, 130, 246, 0.1);
+}
+
 .mh-screen {
     position: absolute;
     top: 0; left: 0; right: 0; bottom: 0;
-    padding: 32px;
+    padding: 36px;
     opacity: 0;
     pointer-events: none;
-    transform: translateY(20px);
-    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    transform: translateY(30px) scale(0.98);
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    display: flex;
+    flex-direction: column;
 }
 .mh-screen.active {
     opacity: 1;
     pointer-events: auto;
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
 }
 
-/* Mejl-innehåll UI */
+/* Mejl-innehåll UI - Renare och luftigare */
 .mh-top-bar {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 24px;
-    padding-bottom: 16px;
-    border-bottom: 1px solid #f1f5f9;
+    margin-bottom: 28px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid rgba(0,0,0,0.06);
 }
 .mh-sender {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 14px;
 }
 .mh-avatar {
-    width: 40px; height: 40px; border-radius: 50%;
+    width: 44px; height: 44px; border-radius: 50%;
     background: #e0f2fe; color: #0284c7;
     display: flex; align-items: center; justify-content: center;
-    font-weight: 700; font-size: 14px;
+    font-weight: 700; font-size: 15px;
+    box-shadow: 0 4px 8px -2px rgba(2, 132, 199, 0.1);
 }
-.mh-sender-info strong { display: block; color: #0f172a; font-size: 15px; }
-.mh-sender-info span { color: #64748b; font-size: 13px; }
+.mh-sender-info strong { display: block; color: #0f172a; font-size: 16px; margin-bottom: 2px;}
+.mh-sender-info span { color: #94a3b8; font-size: 13px; font-weight: 500;}
 .mh-tag {
-    background: #f1f5f9; color: #475569; padding: 4px 10px;
-    border-radius: 6px; font-size: 12px; font-weight: 600;
+    background: #f1f5f9; color: #475569; padding: 6px 12px;
+    border-radius: 8px; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;
 }
+.mh-tag.ai { background: #eff6ff; color: #3b82f6; }
 .mh-tag.draft { background: #dcfce7; color: #166534; }
 
-.mh-subject { font-size: 18px; font-weight: 700; color: #0f172a; margin-bottom: 16px; }
-.mh-body { font-size: 15px; color: #334155; line-height: 1.6; }
+.mh-subject { font-size: 20px; font-weight: 700; color: #0f172a; margin-bottom: 20px; }
+.mh-body { font-size: 16px; color: #334155; line-height: 1.7; flex-grow: 1; }
+.mh-email-quote {
+    border-left: 3px solid #e2e8f0;
+    padding-left: 16px;
+    margin: 20px 0;
+    color: #64748b;
+    font-size: 15px;
+}
 
-/* Typing effekt */
-.mh-typing-dots { display: flex; gap: 4px; padding: 12px 0; }
+/* Typing effekt (Snyggare dots) */
+.mh-typing-dots { display: flex; gap: 6px; padding: 12px 0; }
 .mh-typing-dots span {
-    width: 6px; height: 6px; background: #3b82f6; border-radius: 50%;
+    width: 8px; height: 8px; background: var(--accent); border-radius: 50%;
     animation: bounce 1.4s infinite ease-in-out both;
+    opacity: 0.7;
 }
 .mh-typing-dots span:nth-child(1) { animation-delay: -0.32s; }
 .mh-typing-dots span:nth-child(2) { animation-delay: -0.16s; }
-@keyframes bounce { 0%, 80%, 100% { transform: scale(0); } 40% { transform: scale(1); } }
+@keyframes bounce { 0%, 80%, 100% { transform: scale(0); opacity: 0.5; } 40% { transform: scale(1); opacity: 1; } }
 .mh-cursor {
-    display: inline-block; width: 2px; height: 15px; background: #3b82f6;
+    display: inline-block; width: 2px; height: 17px; background: var(--accent);
     margin-left: 2px; animation: blink 1s step-end infinite; vertical-align: middle;
 }
 @keyframes blink { 50% { opacity: 0; } }
 
-/* Knapp */
+/* Knapp (Premium) */
 .mh-btn {
-    background: #3b82f6; color: white; border: none; padding: 12px 24px;
-    font-size: 15px; font-weight: 600; border-radius: 50px; cursor: pointer;
-    display: inline-flex; align-items: center; gap: 8px; margin-top: 24px;
-    transition: all 0.2s;
+    background: var(--accent); color: white; border: none; padding: 14px 28px;
+    font-size: 16px; font-weight: 600; border-radius: 12px; cursor: pointer;
+    display: inline-flex; align-items: center; gap: 10px; margin-top: auto; /* Trycker ner knappen till botten */
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+    align-self: flex-start; /* Vänsterställ knappen */
 }
-.mh-btn:hover { background: #2563eb; transform: translateY(-2px); }
-.mh-btn.success { background: #10b981; pointer-events: none; }
+.mh-btn:hover { background: var(--accent-hover); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(59, 130, 246, 0.4); }
+.mh-btn.success { background: #10b981; pointer-events: none; box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3); }
 
+/* ─── MOBILANPASSNING ─── */
 @media(max-width: 960px) {
-    .mh-grid { grid-template-columns: 1fr; gap: 40px; }
-    .mh-visual { height: 350px; }
+    .modern-how { padding: 80px 24px; }
+    .mh-header { margin-bottom: 48px; }
+    .mh-title { font-size: 34px; }
+    .mh-subtitle { font-size: 18px; }
+
+    .mh-grid { 
+        grid-template-columns: 1fr; 
+        gap: 48px; 
+    }
+    
+    /* På mobil vill vi att tabblistan ska vara kompaktare */
+    .mh-tab { padding: 20px; }
+    .mh-tab p { font-size: 15px; padding-left: 58px; }
+    .mh-tab-header { gap: 14px; }
+    .mh-step-icon { width: 36px; height: 36px; }
+    .mh-tab h3 { font-size: 19px; }
+
+    /* Skärmen på mobil */
+    .mh-visual { 
+        height: auto; /* Låt den växa med innehållet */
+        min-height: 420px; /* Men ha en bra min-höjd */
+    }
+    .mh-screen {
+        padding: 24px;
+        position: relative; /* På mobil staplar vi dem, annars blir höjden konstig */
+        display: none; /* Göm inaktiva */
+        opacity: 1; transform: none; top: auto; left: auto; bottom: auto; right: auto;
+    }
+    .mh-screen.active {
+        display: flex; /* Visa bara den aktiva */
+    }
+    .mh-top-bar { margin-bottom: 20px; }
+    .mh-body { font-size: 15px; }
 }
 </style>
 
@@ -190,37 +259,37 @@
     <div class="modern-how-inner">
         <div class="mh-header fade-up">
             <h2 class="mh-title">Så här hjälper systemet kansliet</h2>
-            <p class="mh-subtitle">Från fråga till färdigt svar utan att börja från noll varje gång.</p>
+            <p class="mh-subtitle">Från inkommande fråga till färdigt svar på sekunder, utan att ni behöver börja från noll varje gång.</p>
         </div>
 
         <div class="mh-grid">
             <div class="mh-tabs fade-up">
                 <button class="mh-tab active" data-target="1">
                     <div class="mh-tab-header">
-                        <div class="mh-step-num">1</div>
+                        <div class="mh-step-icon"><i data-lucide="inbox" style="width:20px;"></i></div>
                         <h3>Ett mejl kommer in</h3>
                     </div>
-                    <p>En förälder undrar om det finns plats i en grupp. Systemet läser frågan och plockar fram rätt information direkt.</p>
+                    <p>En förälder undrar om det finns plats i en grupp. Systemet läser frågan och förstår vad som efterfrågas.</p>
                 </button>
                 
                 <button class="mh-tab" data-target="2">
                     <div class="mh-tab-header">
-                        <div class="mh-step-num">2</div>
+                        <div class="mh-step-icon"><i data-lucide="sparkles" style="width:20px;"></i></div>
                         <h3>Systemet skriver utkast</h3>
                     </div>
-                    <p>Istället för att ni letar i databaser kombinerar AI:n er föreningsdata med en trevlig ton och formulerar ett svar.</p>
+                    <p>AI:n kollar er föreningsdata (tider, platser) och formulerar ett vänligt svar som en människa hade skrivit.</p>
                 </button>
                 
                 <button class="mh-tab" data-target="3">
                     <div class="mh-tab-header">
-                        <div class="mh-step-num">3</div>
-                        <h3>Granska och skicka</h3>
+                        <div class="mh-step-icon"><i data-lucide="send" style="width:20px;"></i></div>
+                        <h3>Ni granskar och skickar</h3>
                     </div>
-                    <p>När ni öppnar inkorgen ligger utkastet redo. Ni läser igenom, justerar om ni vill, och klickar på skicka.</p>
+                    <p>Utkastet ligger redo i inkorgen. Ni har alltid full kontroll, läser igenom och skickar med ett klick.</p>
                 </button>
             </div>
 
-            <div class="mh-visual fade-up" style="transition-delay: 0.2s;">
+            <div class="mh-visual fade-up" style="transition-delay: 0.2s;" id="mh-visual-container">
                 
                 <div class="mh-screen active" id="mh-screen-1">
                     <div class="mh-top-bar">
@@ -228,35 +297,38 @@
                             <div class="mh-avatar">AS</div>
                             <div class="mh-sender-info">
                                 <strong>Anna Svensson</strong>
-                                <span>Igår 09:14</span>
+                                <span>Förälder • Igår 09:14</span>
                             </div>
                         </div>
                         <div class="mh-tag">Inkommande</div>
                     </div>
                     <div class="mh-subject">Lediga platser 7-åringar?</div>
                     <div class="mh-body">
-                        Hej!<br><br>Vi har stått i kö ett tag nu och undrar om det finns lediga platser i gruppen för 7-åringar på tisdagar?<br><br>Mvh Anna
+                        Hej!<br><br>Vi har stått i kö ett tag nu och undrar om det finns lediga platser i gruppen för 7-åringar på tisdagar?<br><br>Tacksam för svar!<br>Mvh Anna
                     </div>
                 </div>
 
                 <div class="mh-screen" id="mh-screen-2">
                     <div class="mh-top-bar">
                         <div class="mh-sender">
-                            <div class="mh-avatar" style="background:#eff6ff; color:#3b82f6;">
-                                <i data-lucide="sparkles" style="width:18px;"></i>
+                            <div class="mh-avatar" style="background:var(--accent); color:white; box-shadow: var(--accent-glow);">
+                                <i data-lucide="bot" style="width:20px;"></i>
                             </div>
                             <div class="mh-sender-info">
-                                <strong>EMK AI-Utkast</strong>
-                                <span>Genererar svar...</span>
+                                <strong>EMK Systemet</strong>
+                                <span>Analyserar fråga & data...</span>
                             </div>
                         </div>
+                        <div class="mh-tag ai">Genererar svar</div>
                     </div>
                     <div class="mh-subject">Re: Lediga platser 7-åringar?</div>
-                    <div class="mh-body">
+                    <div class="mh-body" style="background: #f8fafc; padding: 20px; border-radius: 12px; border: 1px solid #e2e8f0;">
+                        <div style="font-size:13px; color:#94a3b8; margin-bottom:12px;">Baserat på fråga: "finns lediga platser i gruppen för 7-åringar på tisdagar?"</div>
+                        
                         <div class="mh-typing-dots" id="mh-dots">
                             <span></span><span></span><span></span>
                         </div>
-                        <span id="mh-typed-text"></span><span class="mh-cursor" id="mh-cursor" style="display:none;"></span>
+                        <span id="mh-typed-text" style="color:var(--blue); font-weight:500;"></span><span class="mh-cursor" id="mh-cursor" style="display:none;"></span>
                     </div>
                 </div>
 
@@ -264,21 +336,25 @@
                     <div class="mh-top-bar">
                         <div class="mh-sender">
                             <div class="mh-avatar" style="background:#dcfce7; color:#166534;">
-                                <i data-lucide="check" style="width:18px;"></i>
+                                <i data-lucide="file-edit" style="width:20px;"></i>
                             </div>
                             <div class="mh-sender-info">
-                                <strong>Utkast klart</strong>
-                                <span>Redo för granskning</span>
+                                <strong>Utkast redo</strong>
+                                <span>Väntar på ert godkännande</span>
                             </div>
                         </div>
-                        <div class="mh-tag draft">Redo att skickas</div>
+                        <div class="mh-tag draft">Utkast</div>
                     </div>
                     <div class="mh-subject">Re: Lediga platser 7-åringar?</div>
                     <div class="mh-body">
-                        Hej Anna!<br><br>Tack för ditt mejl. Just nu har vi 2 lediga platser i gruppen Minigymnaster (7 år) som tränar tisdagar kl 17:00-18:00 i Eriksdalshallen. Vill du att jag reserverar en plats?<br><br>Vänliga hälsningar,<br>[Föreningens namn]
+                        Hej Anna!<br><br>Tack för ditt mejl. Just nu har vi 2 lediga platser i gruppen <strong>Minigymnaster (7 år)</strong> som tränar tisdagar kl 17:00-18:00 i Eriksdalshallen.<br><br>Vill du att jag reserverar en av platserna åt er?<br><br>Vänliga hälsningar,<br>Kansliet
+                        
+                        <div class="mh-email-quote">
+                             Den tis 24 feb. 2026 kl. 09:14 skrev Anna Svensson: ...
+                        </div>
                     </div>
                     <button class="mh-btn" id="mh-send-btn">
-                        <i data-lucide="send" style="width:16px;"></i> Skicka svar
+                        <i data-lucide="send" style="width:18px;"></i> Godkänn & Skicka
                     </button>
                 </div>
 
@@ -289,40 +365,36 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', () => {
-    // Om du använder Lucide ikoner på sidan, rendera dem
+    // Initiera ikoner om Lucide finns laddat
     if (typeof lucide !== 'undefined') {
         lucide.createIcons();
     }
 
     const tabs = document.querySelectorAll('.mh-tab');
     const screens = document.querySelectorAll('.mh-screen');
+    const visualContainer = document.getElementById('mh-visual-container');
+    
+    // Element för skrivmaskinseffekten
     const typedText = document.getElementById('mh-typed-text');
     const cursor = document.getElementById('mh-cursor');
     const dots = document.getElementById('mh-dots');
     const sendBtn = document.getElementById('mh-send-btn');
     
     let isTyping = false;
-    const textToType = "Hej Anna!<br><br>Tack för ditt mejl. Just nu har vi 2 lediga platser i gruppen Minigymnaster (7 år) som tränar tisdagar kl 17:00-18:00 i Eriksdalshallen. Vill du att jag reserverar en plats?<br><br>Vänliga hälsningar,<br>[Föreningens namn]";
+    const textToType = "Hej Anna! Tack för ditt mejl. Just nu har vi 2 lediga platser i gruppen Minigymnaster (7 år) som tränar tisdagar kl 17:00-18:00...";
 
+    // Skrivmaskinsfunktion
     function typeWriter(htmlString, element, speed, callback) {
         let i = 0;
-        let isTag = false;
-        let text = "";
+        element.innerHTML = "";
         isTyping = true;
         
         function type() {
-            if (!isTyping) return; // Avbryt om vi byter flik
+            if (!isTyping) return;
             if (i < htmlString.length) {
-                let char = htmlString.charAt(i);
-                if (char === '<') isTag = true;
-                if (char === '>') isTag = false;
-                
-                text += char;
-                element.innerHTML = text;
+                element.innerHTML += htmlString.charAt(i);
                 i++;
-                
-                let currentSpeed = isTag ? 0 : speed;
-                setTimeout(type, currentSpeed);
+                setTimeout(type, speed);
             } else {
                 if(callback) callback();
             }
@@ -330,47 +402,55 @@ document.addEventListener('DOMContentLoaded', () => {
         type();
     }
 
+    // Klick-hanterare för tabbar
     tabs.forEach(tab => {
         tab.addEventListener('click', () => {
-            // Ta bort active från alla tabbar och skärmar
+            const targetId = tab.getAttribute('data-target');
+
+            // 1. Återställ UI
             tabs.forEach(t => t.classList.remove('active'));
             screens.forEach(s => s.classList.remove('active'));
+            visualContainer.classList.remove('ai-active');
             
-            // Återställ skicka-knappen om man hoppar fram och tillbaka
+            // Återställ skicka-knappen
             sendBtn.classList.remove('success');
-            sendBtn.innerHTML = '<i data-lucide="send" style="width:16px;"></i> Skicka svar';
+            sendBtn.innerHTML = '<i data-lucide="send" style="width:18px;"></i> Godkänn & Skicka';
             if (typeof lucide !== 'undefined') lucide.createIcons();
 
-            // Aktivera klickad tab och motsvarande skärm
+            // 2. Aktivera vald tab och skärm
             tab.classList.add('active');
-            const targetId = tab.getAttribute('data-target');
             document.getElementById(`mh-screen-${targetId}`).classList.add('active');
 
-            // Hantera logiken för Steg 2 (Skrivmaskinseffekten)
+            // 3. Hantera logik för specifika steg
             if (targetId === '2') {
+                // Steg 2: Starta AI-animering
+                visualContainer.classList.add('ai-active'); // Lägg till extra glow på behållaren
                 typedText.innerHTML = '';
                 dots.style.display = 'flex';
                 cursor.style.display = 'none';
                 
+                // Vänta lite, visa sedan skrivmaskin
                 setTimeout(() => {
                     dots.style.display = 'none';
                     cursor.style.display = 'inline-block';
-                    typeWriter(textToType, typedText, 10, () => {
-                        cursor.style.display = 'none';
+                    typeWriter(textToType, typedText, 25, () => {
+                        // När det är klartblinkar markören
                         isTyping = false;
                     });
-                }, 1000); // 1 sekunds "tänketid"
+                }, 800); 
             } else {
-                isTyping = false; // Avbryt animering om vi byter bort från steg 2
+                // Avbryt skrivande om vi lämnar steg 2
+                isTyping = false; 
             }
         });
     });
 
-    // Skicka-knappen interaktion
+    // Klick-hanterare för skicka-knappen
     sendBtn.addEventListener('click', () => {
         sendBtn.classList.add('success');
-        sendBtn.innerHTML = '<i data-lucide="check" style="width:16px;"></i> Svar skickat!';
+        sendBtn.innerHTML = '<i data-lucide="check" style="width:18px;"></i> Skickat!';
         if (typeof lucide !== 'undefined') lucide.createIcons();
+        // Här kan man lägga till en konfetti-effekt om man vill vara riktigt "extra" :)
     });
 });
 </script>
