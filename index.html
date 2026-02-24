@@ -301,7 +301,7 @@ input:checked + .slider:before { transform: translateX(24px); }
 }
 .cta-check {
     display: flex;
-    align-items: flex-start;
+    align-items: flex-start; /* Anpassad för att ikonen ska stanna i topp om texten bryts */
     gap: 12px;
     font-size: 15px;
     color: white;
@@ -598,7 +598,6 @@ details[open] summary:after { content: '−'; }
   </div>
 </section>
 
-<!-- ═══ UPPDATERAD: Så här hjälper systemet kansliet ═══ -->
 <section class="section bg-white" id="how">
   <div class="section-inner">
     <div class="section-header fade-up">
@@ -649,12 +648,11 @@ details[open] summary:after { content: '−'; }
   </div>
 </section>
 
-<!-- ═══ UPPDATERAD: Integration & Säkerhet ═══ -->
-<section class="section bg-blue" style="background:#0f172a;">
+<section class="section bg-blue" style="background:#0f172a; border-top: 1px solid rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.05);">
     <div class="section-inner integration-grid" style="display:grid; grid-template-columns: 1fr 1fr; gap:64px; align-items:center;">
         
         <div class="fade-up">
-            <div style="display:inline-block; padding: 6px 12px; background:rgba(59, 130, 246, 0.2); border-radius:50px; color:#60a5fa; font-size:13px; font-weight:600; margin-bottom:24px;">
+            <div style="display:inline-block; padding: 6px 12px; background:rgba(59, 130, 246, 0.15); border: 1px solid rgba(59, 130, 246, 0.3); border-radius:50px; color:#60a5fa; font-size:13px; font-weight:600; margin-bottom:24px;">
                 INTEGRATION & SÄKERHET
             </div>
             <h2 style="color:white; font-size:36px; font-weight:700; line-height:1.2; margin-bottom:24px;">
@@ -663,59 +661,67 @@ details[open] summary:after { content: '−'; }
             <p style="color:#cbd5e1; font-size:18px; margin-bottom:16px; line-height:1.7;">
                 Ja. Ni behöver inga avancerade integrationer.
             </p>
-            <p style="color:#cbd5e1; font-size:18px; margin-bottom:32px; line-height:1.7;">
+            <p style="color:#cbd5e1; font-size:18px; margin-bottom:40px; line-height:1.7;">
                 Vi läser in den information ni redan har som grupper, tider och kontaktuppgifter på ett säkert sätt. Det påverkar inte ert medlemsregister, men gör att systemet kan ge rätt svar direkt.
             </p>
             
-            <div style="background:rgba(255,255,255,0.05); padding:24px; border-radius:16px; border-left:4px solid var(--green);">
-                <h4 style="color:white; margin-bottom:8px; display:flex; align-items:center; gap:10px;">
-                    <i data-lucide="search" style="width:18px;"></i> Exempel: "Trupp Röd 2"
-                </h4>
-                <p style="color:#94a3b8; font-size:15px; margin-bottom:0;">
-                    Om en förälder frågar om <em>"Trupp Röd 2"</em> vet systemet redan vem som tränar gruppen, vilka tider som gäller och vilken hall de är i. Svaret innehåller rätt kontaktuppgifter och information automatiskt.
-                </p>
-            </div>
-        </div>
-
-        <div class="fade-up" style="position:relative;">
-            <div style="background:white; border-radius:24px; padding:40px; box-shadow:0 20px 50px rgba(0,0,0,0.3); position:relative; z-index:2;">
-                <div style="display:flex; align-items:center; gap:16px; margin-bottom:24px;">
-                    <div style="width:48px; height:48px; background:#eff6ff; border-radius:12px; display:flex; align-items:center; justify-content:center; color:#2563eb;">
-                        <i data-lucide="database"></i>
-                    </div>
-                    <div>
-                        <strong style="display:block; color:#0f172a; font-size:16px;">Er föreningsdata</strong>
-                        <span style="font-size:13px; color:#64748b;">SportAdmin / Laget.se export</span>
-                    </div>
+            <div style="background:rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); padding:24px; border-radius:16px; display:flex; gap:16px;">
+                <div style="width: 32px; height: 32px; border-radius: 8px; background: rgba(16, 185, 129, 0.1); color: #34d399; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                    <i data-lucide="search" style="width:18px;"></i>
                 </div>
-                
-                <div style="border-left:2px dashed #e2e8f0; margin-left:24px; padding-left:40px; padding-bottom:32px; position:relative;">
-                    <div style="position:absolute; left:-25px; top:0; background:#f8fafc; border:1px solid #e2e8f0; padding:4px 12px; border-radius:20px; font-size:11px; font-weight:600; color:#64748b;">
-                        SYNKAS
-                    </div>
-                    <p style="font-size:14px; color:#475569;">Systemet uppdateras med:</p>
-                    <ul style="list-style:none; margin-top:8px;">
-                        <li style="display:flex; align-items:center; gap:8px; font-size:14px; color:#1e293b; margin-bottom:6px;">
-                            <i data-lucide="check" style="width:14px; color:var(--green);"></i> Gruppnamn & Tider
-                        </li>
-                        <li style="display:flex; align-items:center; gap:8px; font-size:14px; color:#1e293b; margin-bottom:6px;">
-                            <i data-lucide="check" style="width:14px; color:var(--green);"></i> Tränarkontakter
-                        </li>
-                        <li style="display:flex; align-items:center; gap:8px; font-size:14px; color:#1e293b;">
-                            <i data-lucide="check" style="width:14px; color:var(--green);"></i> Hallar & Platser
-                        </li>
-                    </ul>
-                </div>
-
-                <div style="background:#f0f9ff; border:1px solid #bae6fd; border-radius:12px; padding:16px; display:flex; gap:12px;">
-                    <i data-lucide="message-square" style="color:#0284c7; width:20px; flex-shrink:0;"></i>
-                    <p style="font-size:13px; color:#0c4a6e; line-height:1.5;">
-                        <strong>Resultat:</strong> AI:n kan svara: <em>"Trupp Röd 2 tränar i Åkeshovshallen kl 18.00. Tränare är Lisa, du når henne på 070-XXX..."</em>
+                <div>
+                    <h4 style="color:white; margin-bottom:8px; font-size: 16px;">
+                        Exempel: "Trupp Röd 2"
+                    </h4>
+                    <p style="color:#94a3b8; font-size:15px; margin-bottom:0; line-height: 1.6;">
+                        Om en förälder frågar om <em>"Trupp Röd 2"</em> vet systemet redan vem som tränar gruppen, vilka tider som gäller och vilken hall de är i. Svaret innehåller rätt kontaktuppgifter automatiskt.
                     </p>
                 </div>
             </div>
-            
-            <div style="position:absolute; top:-20px; right:-20px; width:100%; height:100%; border:2px solid rgba(255,255,255,0.1); border-radius:24px; z-index:1;"></div>
+        </div>
+
+        <div class="fade-up">
+            <div style="background:rgba(255,255,255,0.03); backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.1); border-radius:24px; padding:40px; box-shadow:0 30px 60px rgba(0,0,0,0.4); position:relative;">
+                
+                <div style="display:flex; align-items:center; gap:16px; margin-bottom: 24px;">
+                    <div style="width:48px; height:48px; background:rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.2); border-radius:12px; display:flex; align-items:center; justify-content:center; color:#60a5fa;">
+                        <i data-lucide="database"></i>
+                    </div>
+                    <div>
+                        <strong style="display:block; color:white; font-size:16px;">Er föreningsdata</strong>
+                        <span style="font-size:14px; color:#94a3b8;">SportAdmin / Laget.se export</span>
+                    </div>
+                </div>
+                
+                <div style="display: flex; flex-direction: column; align-items: center; margin-bottom: 24px;">
+                    <div style="width: 2px; height: 30px; background: linear-gradient(to bottom, rgba(59, 130, 246, 0.5), transparent);"></div>
+                    <div style="background: rgba(15, 23, 42, 0.8); border: 1px solid rgba(255,255,255,0.1); padding: 4px 12px; border-radius: 20px; font-size: 11px; font-weight: 700; color: #cbd5e1; letter-spacing: 0.5px; z-index: 2; margin-top: -10px; margin-bottom: 16px;">
+                        LÄSES IN SÄKERT
+                    </div>
+                    
+                    <div style="width: 100%; background: rgba(0,0,0,0.2); border-radius: 12px; padding: 20px;">
+                        <p style="font-size:14px; color:#94a3b8; margin-bottom: 12px;">Systemet förstår och lagrar:</p>
+                        <ul style="list-style:none;">
+                            <li style="display:flex; align-items:center; gap:10px; font-size:15px; color:#e2e8f0; margin-bottom:10px;">
+                                <i data-lucide="check-circle-2" style="width:16px; color:#34d399;"></i> Gruppnamn & Tider
+                            </li>
+                            <li style="display:flex; align-items:center; gap:10px; font-size:15px; color:#e2e8f0; margin-bottom:10px;">
+                                <i data-lucide="check-circle-2" style="width:16px; color:#34d399;"></i> Tränarkontakter
+                            </li>
+                            <li style="display:flex; align-items:center; gap:10px; font-size:15px; color:#e2e8f0;">
+                                <i data-lucide="check-circle-2" style="width:16px; color:#34d399;"></i> Hallar & Platser
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div style="background:rgba(59, 130, 246, 0.05); border:1px solid rgba(59, 130, 246, 0.2); border-radius:12px; padding:16px; display:flex; gap:12px;">
+                    <i data-lucide="sparkles" style="color:#60a5fa; width:20px; flex-shrink:0;"></i>
+                    <p style="font-size:14px; color:#cbd5e1; line-height:1.5;">
+                        <strong style="color:white;">Redo att svara:</strong> <em>"Trupp Röd 2 tränar i Åkeshovshallen kl 18.00. Tränare är Lisa..."</em>
+                    </p>
+                </div>
+            </div>
         </div>
         
     </div>
