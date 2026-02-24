@@ -414,7 +414,7 @@ updateROI();
   <div class="section-inner">
     <div class="section-header fade-up">
       <h2 class="section-title">Så här hjälper systemet kansliet</h2>
-      <p class="section-subtitle">Från fråga till färdigt svar utan att ni behöver börja från noll varje gång.</p>
+      <p class="section-subtitle">Från fråga till färdigt svar, utan att kansliet lyfter ett finger.</p>
     </div>
     
     <div class="steps-grid">
@@ -433,7 +433,7 @@ updateROI();
             <span class="step-num">02</span>
         </div>
         <h3>Ett svar ligger redan redo</h3>
-        <p>När ni öppnar mejlen finns ett färdigt svar i utkastet. Ni läser igenom, justerar om ni vill och skickar.</p>
+        <p>När ni öppnar mejlen finns ett färdigt svar i utkastmappen i Gmail eller Outlook. Rätt info, rätt ton.</p>
         
         <div style="display:flex; gap:16px; margin-top:16px; align-items:center;">
             <div style="display:flex; align-items:center; gap:6px; background:white; padding:6px 12px; border-radius:8px; border:1px solid #e2e8f0; font-weight:600; font-size:13px; color:#444;">
@@ -735,37 +735,49 @@ updateROI();
   </div>
 </section>
 <style>
-.about-flex{display:flex;gap:64px;align-items:center;max-width:1000px;margin:0 auto;}
-.about-image-wrapper {position: relative;}
-.about-photo{ width: 100%; max-width: 320px; height: auto; object-fit: contain; position: relative; z-index: 1; mix-blend-mode: multiply;}
+.about-card {
+    background: white; border-radius: 24px; padding: 56px; 
+    box-shadow: 0 20px 40px -10px rgba(0,0,0,0.05); border: 1px solid #e2e8f0;
+    display: flex; gap: 64px; align-items: center; max-width: 1000px; margin: 0 auto;
+}
+.about-image-wrapper {position: relative; flex-shrink: 0;}
+.about-photo{ width: 100%; max-width: 300px; height: auto; object-fit: contain; position: relative; z-index: 1; mix-blend-mode: multiply;}
+.about-text { flex-grow: 1; }
 .about-text h3 {font-size: 32px; margin-bottom: 24px; color: var(--blue);}
-.about-text p{font-size:17px;color:#475569;line-height:1.8;margin-bottom:24px;}
-.quote {border-left: 4px solid var(--accent); padding-left: 20px; font-style: italic; color: #334155;}
+.about-text p{font-size:17px;color:#475569;line-height:1.8;margin-bottom:20px;}
+
+/* Snyggare citat-box */
+.quote-box {
+    background: #f8fafc; padding: 24px 32px; border-radius: 16px; 
+    border-left: 4px solid var(--accent); margin: 24px 0; position: relative;
+}
+.quote-box p { font-size: 16px; font-style: italic; color: #334155; margin-bottom: 0; line-height: 1.7; }
+
 .gallery{display:grid; grid-template-columns: repeat(3, 1fr); gap:24px; margin-top:80px; max-width:1000px; margin-left:auto; margin-right:auto;}
-.gallery img{width:100%; height:240px; object-fit:cover; border-radius:16px; transition: transform 0.3s;}
+.gallery img{width:100%; height:240px; object-fit:cover; border-radius:16px; transition: transform 0.3s; box-shadow: 0 10px 20px rgba(0,0,0,0.05);}
 .gallery img:hover {transform: scale(1.02);}
 
 @media(max-width:960px){
-  .about-flex { flex-direction: column; align-items: flex-start; text-align: left; gap: 24px; }
+  .about-card { flex-direction: column; padding: 40px 24px; gap: 32px; text-align: left; }
   .about-image-wrapper { width: 100%; display: flex; justify-content: center; }
-  .about-photo { max-width: 250px; } 
-  .about-text { width: 100%; }
-  .about-text h3 { font-size: 28px; line-height: 1.3; margin-bottom: 16px; text-align: left; }
-  .about-text p { font-size: 16px; line-height: 1.7; text-align: left; margin-bottom: 20px; }
-  .quote { border-left: 4px solid var(--accent); border-top: none; padding-top: 0; padding-left: 20px; text-align: left; margin: 24px 0; }
+  .about-photo { max-width: 220px; } 
+  .about-text h3 { font-size: 28px; line-height: 1.3; margin-bottom: 16px; }
+  .about-text p { font-size: 16px; line-height: 1.7; margin-bottom: 20px; }
+  .quote-box { padding: 20px 24px; margin: 24px 0; }
   .gallery {
       display: flex; flex-wrap: nowrap; overflow-x: auto; scroll-snap-type: x mandatory;
-      gap: 16px; padding-bottom: 20px; margin-top: 40px; -webkit-overflow-scrolling: touch; scrollbar-width: none; 
+      gap: 16px; padding-bottom: 20px; margin-top: 40px; margin-left: -24px; margin-right: -24px;
+      padding-left: 24px; padding-right: 24px; -webkit-overflow-scrolling: touch; scrollbar-width: none; 
   }
   .gallery::-webkit-scrollbar { display: none; } 
-  .gallery img { flex: 0 0 85%; scroll-snap-align: center; height: 300px; }
+  .gallery img { flex: 0 0 85%; scroll-snap-align: center; height: 260px; }
 }
 </style>
 
 <section class="section bg-light" id="about">
   <div class="section-inner">
     
-    <div class="about-flex fade-up">
+    <div class="about-card fade-up">
       <div class="about-image-wrapper">
         <img class="about-photo" loading="lazy" src="Mattiasrund.png" alt="Mattias Larsson, EMK Solutions grundare">
       </div>
@@ -773,7 +785,11 @@ updateROI();
       <div class="about-text">
         <h3>Jag har sett hur det ser ut på kansliet</h3>
         <p><strong>Jag heter Mattias Larsson.</strong> Före detta landslagsgymnast och grundare av EMK Solutions. Jag har jobbat med föreningar och idrottsverksamheter i flera år och vet hur mycket jobb som ligger bakom kulisserna. Och jag vet att kansliet ofta fastnar i mejl istället för att hinna med allt annat som behöver göras.</p>
-        <p class="quote">"Samma frågor, om och om igen. Lediga platser, priser, terminsstart. Tiden gick till inkorgen när den behövdes någon annanstans."</p>
+        
+        <div class="quote-box">
+            <p>"Samma frågor, om och om igen. Lediga platser, priser, terminsstart. Tiden gick till inkorgen när den behövdes någon annanstans."</p>
+        </div>
+
         <p>EMK är byggt för att ge er den tiden tillbaka. Inte så ni kan jobba mer, utan så ni kan lägga den där det faktiskt gör skillnad.</p>
       </div>
     </div>
@@ -853,23 +869,38 @@ details[open] summary:after { content: '−'; }
 }
 .cta-split { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; max-width: 1100px; margin: 0 auto; position: relative; z-index: 2; }
 .cta-content { color: white; text-align: left; }
-.cta-checks { display: flex; flex-direction: column; gap: 16px; margin-bottom: 32px; }
-.cta-check { display: flex; align-items: flex-start; gap: 12px; font-size: 15px; color: white; line-height: 1.5; }
-.cta-check i { margin-top: 2px; flex-shrink: 0; }
-.cta-form-card { background: white; padding: 40px; border-radius: 24px; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.3); }
-.form-group { margin-bottom: 16px; text-align: left; }
-.form-label { display: block; margin-bottom: 8px; font-size: 14px; font-weight: 600; color: #1e293b; }
-.form-input { width: 100%; padding: 12px 16px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 16px; transition: border 0.2s; font-family: 'Inter', sans-serif; }
-.form-input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1); }
+.cta-content h2 { margin-bottom: 20px; font-size: 38px; line-height: 1.2; }
+.cta-content p { font-size: 18px; color: #cbd5e1; margin-bottom: 32px; line-height: 1.6; }
+
+/* Förbättrad Checklista */
+.cta-checks { display: flex; flex-direction: column; gap: 16px; margin-bottom: 40px; }
+.cta-check { display: flex; align-items: flex-start; gap: 16px; font-size: 16px; color: white; line-height: 1.5; font-weight: 500;}
+.cta-check-icon { 
+    width: 28px; height: 28px; background: rgba(16, 185, 129, 0.15); border-radius: 50%; 
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: -2px; 
+}
+
+/* Förbättrat Formulär */
+.cta-form-card { background: white; padding: 48px 40px; border-radius: 24px; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.4); }
+.form-group { margin-bottom: 20px; text-align: left; }
+.form-label { display: block; margin-bottom: 8px; font-size: 14px; font-weight: 600; color: #334155; }
+.form-input { 
+    width: 100%; padding: 14px 16px; background: #f8fafc; border: 1px solid #e2e8f0; 
+    border-radius: 12px; font-size: 15px; transition: all 0.2s; font-family: 'Inter', sans-serif; color: #0f172a;
+}
+.form-input::placeholder { color: #94a3b8; }
+.form-input:focus { outline: none; background: white; border-color: var(--accent); box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.15); }
 
 @media(max-width:960px){
-  .cta-split { grid-template-columns: 1fr; gap: 48px; }
+  .cta-section { padding: 80px 24px; }
+  .cta-split { grid-template-columns: 1fr; gap: 56px; }
   .cta-content { text-align: left; } 
-  .cta-content p { margin: 0 0 28px 0; max-width: 100%; line-height: 1.6; font-size: 16px; }
-  .cta-checks { margin: 0 0 32px 0 !important; width: 100%; align-items: flex-start; }
-  .cta-check { text-align: left; align-items: flex-start; } 
-  .cta-content .cta-btn-lg { margin: 0 auto; width: 100%; max-width: 320px; justify-content: center; display: flex; }
-  .cta-form-card { padding: 32px 20px; }
+  .cta-content h2 { font-size: 32px; }
+  .cta-content p { margin: 0 0 32px 0; max-width: 100%; font-size: 16px; }
+  .cta-checks { margin: 0 0 40px 0 !important; width: 100%; align-items: flex-start; }
+  .cta-check { text-align: left; align-items: flex-start; font-size: 15px;} 
+  .cta-content .cta-btn-lg { width: 100%; justify-content: center; display: flex; }
+  .cta-form-card { padding: 40px 24px; }
 }
 </style>
 
@@ -881,18 +912,33 @@ details[open] summary:after { content: '−'; }
             <p>Just nu tar vi in ett begränsat antal nya föreningar per kvartal. Boka 15 minuter så visar vi hur det ser ut med era egna mejl.</p>
             
             <div class="cta-checks">
-                <div class="cta-check"><i data-lucide="check" style="width:18px;height:18px;color:var(--green);stroke-width:3; flex-shrink:0;"></i><span>Byggt i samarbete med svenska gymnastikföreningar</span></div>
-                <div class="cta-check"><i data-lucide="check" style="width:18px;height:18px;color:var(--green);stroke-width:3; flex-shrink:0;"></i><span>Igång på 5 dagar</span></div>
-                <div class="cta-check"><i data-lucide="check" style="width:18px;height:18px;color:var(--green);stroke-width:3; flex-shrink:0;"></i><span>Ingen bindningstid</span></div>
-                <div class="cta-check"><i data-lucide="check" style="width:18px;height:18px;color:var(--green);stroke-width:3; flex-shrink:0;"></i><span>Ni godkänner varje svar innan det skickas</span></div>
-                <div class="cta-check"><i data-lucide="check" style="width:18px;height:18px;color:var(--green);stroke-width:3; flex-shrink:0;"></i><span>Funkar med Gmail och Outlook</span></div>
+                <div class="cta-check">
+                    <div class="cta-check-icon"><i data-lucide="check" style="width:16px;height:16px;color:var(--green);stroke-width:3;"></i></div>
+                    <span>Byggt i samarbete med svenska gymnastikföreningar</span>
+                </div>
+                <div class="cta-check">
+                    <div class="cta-check-icon"><i data-lucide="check" style="width:16px;height:16px;color:var(--green);stroke-width:3;"></i></div>
+                    <span>Igång på 5 dagar</span>
+                </div>
+                <div class="cta-check">
+                    <div class="cta-check-icon"><i data-lucide="check" style="width:16px;height:16px;color:var(--green);stroke-width:3;"></i></div>
+                    <span>Ingen bindningstid</span>
+                </div>
+                <div class="cta-check">
+                    <div class="cta-check-icon"><i data-lucide="check" style="width:16px;height:16px;color:var(--green);stroke-width:3;"></i></div>
+                    <span>Ni godkänner varje svar innan det skickas</span>
+                </div>
+                <div class="cta-check">
+                    <div class="cta-check-icon"><i data-lucide="check" style="width:16px;height:16px;color:var(--green);stroke-width:3;"></i></div>
+                    <span>Funkar med Gmail och Outlook</span>
+                </div>
             </div>
 
             <a href="https://calendly.com/mattias-larsson-emkmarketing/motesbokning" target="_blank" class="cta-btn cta-btn-lg" style="background:white; color:var(--blue); box-shadow:none;" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/mattias-larsson-emkmarketing/motesbokning'});return false;">Boka demo (15 min)</a>
         </div>
 
         <div class="cta-form-card fade-up" style="transition-delay: 0.1s;">
-            <h3 style="color:#0f172a; font-size:22px; margin-bottom:16px; text-align:center;">Vill ni bli uppringda istället?</h3>
+            <h3 style="color:#0f172a; font-size:24px; margin-bottom:24px; text-align:center; letter-spacing:-0.5px;">Vill ni bli uppringda istället?</h3>
             
             <form action="PASTE_YOUR_FORMSPREE_LINK_HERE" method="POST">
                 <div class="form-group">
@@ -907,10 +953,13 @@ details[open] summary:after { content: '−'; }
                     <label class="form-label">Ungefär antal mejl per vecka?</label>
                     <input type="text" name="volym" class="form-input" placeholder="T.ex. 50 st">
                 </div>
-                <button type="submit" class="cta-btn full-width" style="margin-top:8px;">Bli uppringd</button>
+                <button type="submit" class="cta-btn full-width" style="margin-top:12px; padding: 16px;">Bli uppringd</button>
             </form>
             
-            <p style="font-size:12px; color:#94a3b8; text-align:center; margin-top:16px;">Vi ringer inom 24 timmar. Inga säljsamtal, bara en rak genomgång.</p>
+            <div style="display:flex; align-items:center; justify-content:center; gap:8px; margin-top:20px; color:#64748b; font-size:13px;">
+                <i data-lucide="shield-check" style="width:16px; color:#94a3b8;"></i>
+                <p style="margin:0;">Vi ringer inom 24 timmar. Inga säljsamtal, bara en rak genomgång.</p>
+            </div>
         </div>
     </div>
   </div>
@@ -1008,6 +1057,7 @@ if(stickyCta && heroSection && ctaSection) {
         const ctaTop = ctaSection.getBoundingClientRect().top;
         const windowHeight = window.innerHeight;
 
+        // Visar knappen bara om man skrollat förbi hero, och inte nått sista formuläret
         if (heroBottom < 0 && ctaTop > windowHeight) {
             stickyCta.classList.add('show-sticky');
         } else {
