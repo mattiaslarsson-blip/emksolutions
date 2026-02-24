@@ -268,9 +268,19 @@ input:checked + .slider:before { transform: translateX(24px); }
     z-index: 1;
     mix-blend-mode: multiply;
 }
+.about-text { width: 100%; max-width: 600px; } /* Smalare textkolumn för bättre läsbarhet */
 .about-text h3 {font-size: 32px; margin-bottom: 24px; color: var(--blue);}
 .about-text p{font-size:17px;color:#475569;line-height:1.8;margin-bottom:24px;}
-.quote {border-left: 4px solid var(--accent); padding-left: 20px; font-style: italic; color: #334155;}
+.quote {
+    background: #f0fdf4; /* Svag ljusgrön eller ljusblå bakgrund, anpassa gärna! (#eff6ff för blå) */
+    border-left: 4px solid var(--accent); 
+    padding: 24px; 
+    font-style: italic; 
+    color: var(--blue);
+    font-size: 18px; /* Större och tydligare */
+    border-radius: 0 12px 12px 0;
+    margin: 32px 0;
+}
 
 /* ─── GALLERY ─── */
 .gallery{display:grid; grid-template-columns: repeat(3, 1fr); gap:24px; margin-top:80px; max-width:1000px; margin-left:auto; margin-right:auto;}
@@ -296,16 +306,16 @@ input:checked + .slider:before { transform: translateX(24px); }
 .cta-checks {
     display: flex;
     flex-direction: column;
-    gap: 16px;
-    margin-bottom: 32px;
+    gap: 20px; /* Ökat avstånd mellan punkterna */
+    margin-bottom: 40px;
 }
 .cta-check {
     display: flex;
-    align-items: flex-start; /* Anpassad för att ikonen ska stanna i topp om texten bryts */
+    align-items: flex-start; 
     gap: 12px;
-    font-size: 15px;
+    font-size: 16px; /* Lite större text i listan */
     color: white;
-    line-height: 1.5;
+    line-height: 1.6;
 }
 .cta-check i {
     margin-top: 2px;
@@ -322,8 +332,10 @@ input:checked + .slider:before { transform: translateX(24px); }
 .form-input {
     width: 100%; padding: 12px 16px; border: 1px solid #cbd5e1; border-radius: 8px;
     font-size: 16px; transition: border 0.2s; font-family: 'Inter', sans-serif;
+    background: white;
 }
 .form-input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1); }
+.form-input option { color: #1e293b; }
 
 /* ─── GDPR ACCORDION ─── */
 .faq-section { max-width: 800px; margin: 0 auto; }
@@ -430,13 +442,13 @@ details[open] summary:after { content: '−'; }
       border-radius: 0; border-left: none; border-right: none; box-shadow: 0 10px 20px -10px rgba(0,0,0,0.05);
   }
   
-  .about-flex { flex-direction: column; align-items: flex-start; text-align: left; gap: 24px; }
+  /* OM OSS - MOBIL CENTRERING */
+  .about-flex { flex-direction: column; align-items: center; text-align: center; gap: 24px; }
   .about-image-wrapper { width: 100%; display: flex; justify-content: center; }
   .about-photo { max-width: 250px; } 
-  .about-text { width: 100%; }
-  .about-text h3 { font-size: 28px; line-height: 1.3; margin-bottom: 16px; text-align: left; }
-  .about-text p { font-size: 16px; line-height: 1.7; text-align: left; margin-bottom: 20px; }
-  .quote { border-left: 4px solid var(--accent); border-top: none; padding-top: 0; padding-left: 20px; text-align: left; margin: 24px 0; }
+  .about-text h3 { font-size: 28px; line-height: 1.3; margin-bottom: 16px; text-align: center; }
+  .about-text p { font-size: 16px; line-height: 1.7; text-align: center; margin-bottom: 20px; }
+  .quote { border-left: none; border-top: 4px solid var(--accent); padding: 24px; text-align: center; margin: 24px 0; border-radius: 0 0 12px 12px; }
   
   .gallery {
       display: flex; flex-wrap: nowrap; overflow-x: auto; scroll-snap-type: x mandatory;
@@ -458,14 +470,16 @@ details[open] summary:after { content: '−'; }
   
   .solution-grid {grid-template-columns: 1fr;}
   
+  /* CTA - MOBIL CENTRERING */
   .cta-split { grid-template-columns: 1fr; gap: 48px; }
-  .cta-content { text-align: left; }
-  .cta-content p { margin: 0 0 28px 0; max-width: 100%; line-height: 1.6; font-size: 16px; }
+  .cta-content { text-align: center; }
+  .cta-content p { margin: 0 auto 28px auto; max-width: 100%; line-height: 1.6; font-size: 16px; text-align: center; }
   
   .cta-checks { 
-      margin: 0 0 32px 0 !important; 
-      width: 100%;
+      margin: 0 auto 32px auto !important; 
+      width: fit-content; /* Låter blocket centreras utan att bryta vänsterställningen i listan */
       align-items: flex-start;
+      display: inline-flex;
   }
   .cta-check { text-align: left; align-items: flex-start; } 
   
@@ -644,7 +658,6 @@ details[open] summary:after { content: '−'; }
         <p>Istället för att leta i dokument och grupper granskar ni bara svaret. Det som tidigare tog flera minuter går nu på några sekunder.</p>
       </div>
     </div>
-
   </div>
 </section>
 
@@ -682,7 +695,6 @@ details[open] summary:after { content: '−'; }
 
         <div class="fade-up">
             <div style="background:rgba(255,255,255,0.03); backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.1); border-radius:24px; padding:40px; box-shadow:0 30px 60px rgba(0,0,0,0.4); position:relative;">
-                
                 <div style="display:flex; align-items:center; gap:16px; margin-bottom: 24px;">
                     <div style="width:48px; height:48px; background:rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.2); border-radius:12px; display:flex; align-items:center; justify-content:center; color:#60a5fa;">
                         <i data-lucide="database"></i>
@@ -723,7 +735,6 @@ details[open] summary:after { content: '−'; }
                 </div>
             </div>
         </div>
-        
     </div>
 </section>
 
@@ -905,14 +916,14 @@ details[open] summary:after { content: '−'; }
             <p>Just nu tar vi in ett begränsat antal nya föreningar per kvartal. Boka 15 minuter så visar vi hur det ser ut med era egna mejl.</p>
             
             <div class="cta-checks">
-                <div class="cta-check"><i data-lucide="check" style="width:18px;height:18px;color:var(--green);stroke-width:3; flex-shrink:0;"></i><span>Byggt i samarbete med svenska gymnastikföreningar</span></div>
-                <div class="cta-check"><i data-lucide="check" style="width:18px;height:18px;color:var(--green);stroke-width:3; flex-shrink:0;"></i><span>Igång på 5 dagar</span></div>
-                <div class="cta-check"><i data-lucide="check" style="width:18px;height:18px;color:var(--green);stroke-width:3; flex-shrink:0;"></i><span>Ingen bindningstid</span></div>
-                <div class="cta-check"><i data-lucide="check" style="width:18px;height:18px;color:var(--green);stroke-width:3; flex-shrink:0;"></i><span>Ni godkänner varje svar innan det skickas</span></div>
-                <div class="cta-check"><i data-lucide="check" style="width:18px;height:18px;color:var(--green);stroke-width:3; flex-shrink:0;"></i><span>Funkar med Gmail och Outlook</span></div>
+                <div class="cta-check"><i data-lucide="check" style="width:20px;height:20px;color:var(--green);stroke-width:3; flex-shrink:0;"></i><span>Byggt i samarbete med svenska gymnastikföreningar</span></div>
+                <div class="cta-check"><i data-lucide="check" style="width:20px;height:20px;color:var(--green);stroke-width:3; flex-shrink:0;"></i><span>Igång på 5 dagar</span></div>
+                <div class="cta-check"><i data-lucide="check" style="width:20px;height:20px;color:var(--green);stroke-width:3; flex-shrink:0;"></i><span>Ingen bindningstid</span></div>
+                <div class="cta-check"><i data-lucide="check" style="width:20px;height:20px;color:var(--green);stroke-width:3; flex-shrink:0;"></i><span>Ni godkänner varje svar innan det skickas</span></div>
+                <div class="cta-check"><i data-lucide="check" style="width:20px;height:20px;color:var(--green);stroke-width:3; flex-shrink:0;"></i><span>Funkar med Gmail och Outlook</span></div>
             </div>
 
-            <a href="https://calendly.com/mattias-larsson-emkmarketing/motesbokning" target="_blank" class="cta-btn cta-btn-lg" style="background:white; color:var(--blue); box-shadow:none;" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/mattias-larsson-emkmarketing/motesbokning'});return false;">Boka demo (15 min)</a>
+            <a href="https://calendly.com/mattias-larsson-emkmarketing/motesbokning" target="_blank" class="cta-btn cta-btn-lg" style="background:var(--accent); color:white; border: 2px solid white; box-shadow: 0 10px 30px rgba(0,0,0,0.3);" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/mattias-larsson-emkmarketing/motesbokning'});return false;">Boka demo (15 min)</a>
         </div>
 
         <div class="cta-form-card fade-up" style="transition-delay: 0.1s;">
@@ -929,9 +940,14 @@ details[open] summary:after { content: '−'; }
                 </div>
                 <div class="form-group">
                     <label class="form-label">Ungefär antal mejl per vecka?</label>
-                    <input type="text" name="volym" class="form-input" placeholder="T.ex. 50 st">
+                    <select name="volym" class="form-input" required>
+                        <option value="" disabled selected>Välj uppskattat antal...</option>
+                        <option value="Mindre än 50 st">Mindre än 50 st</option>
+                        <option value="50 - 150 st">50 - 150 st</option>
+                        <option value="Över 150 st">Över 150 st</option>
+                    </select>
                 </div>
-                <button type="submit" class="cta-btn full-width" style="margin-top:8px;">Bli uppringd</button>
+                <button type="submit" class="cta-btn full-width" style="margin-top:8px; background:var(--blue);">Bli uppringd</button>
             </form>
             
             <p style="font-size:12px; color:#94a3b8; text-align:center; margin-top:16px;">Vi ringer inom 24 timmar. Inga säljsamtal, bara en rak genomgång.</p>
