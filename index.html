@@ -244,9 +244,9 @@ h1,h2,h3,h4,h5,h6{
     border: 1px solid #e2e8f0;
     box-shadow: 0 25px 50px -12px rgba(0,0,0,0.08);
     display: grid;
-    grid-template-columns: 1.2fr 0.8fr;
+    grid-template-columns: 1fr;
     overflow: hidden;
-    max-width: 1000px;
+    max-width: 800px;
     margin: 0 auto;
 }
 .founder-content { padding: 56px; display: flex; flex-direction: column; justify-content: center; }
@@ -267,14 +267,16 @@ h1,h2,h3,h4,h5,h6{
 }
 .founder-quote p { font-style: italic; color: var(--blue); margin: 0; font-size: 16px; line-height: 1.6; }
 .founder-image {
-    background: #f1f5f9;
+    background: var(--dark);
     display: flex; align-items: center; justify-content: center;
     position: relative; overflow: hidden;
-    min-height: 340px; padding: 40px;
+    padding: 48px 40px;
 }
 .about-photo {
-    width: 100%; max-width: 280px; height: auto; object-fit: contain;
+    width: 180px; height: 180px; border-radius: 50%; object-fit: cover;
     position: relative; z-index: 1;
+    border: 4px solid rgba(255,255,255,0.15);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
 }
 .gallery{display:grid; grid-template-columns: repeat(3, 1fr); gap:24px; margin-top:80px; max-width:1000px; margin-left:auto; margin-right:auto;}
 .gallery img{width:100%; height:240px; object-fit:cover; border-radius:16px; transition: transform 0.3s;}
@@ -444,27 +446,32 @@ h1,h2,h3,h4,h5,h6{
   
   /* Adjusted mobile flex — carousel */
   .steps-grid, .trust-grid {
-      display: flex; flex-wrap: nowrap; overflow-x: auto; scroll-snap-type: x mandatory;
-      gap: 16px; padding-bottom: 24px; margin-left: -24px; margin-right: -24px;
+      display: flex !important; grid-template-columns: none !important;
+      flex-wrap: nowrap; overflow-x: auto; scroll-snap-type: x mandatory;
+      gap: 20px; padding-bottom: 24px; margin-left: -24px; margin-right: -24px;
       padding-left: 24px; padding-right: 24px; -webkit-overflow-scrolling: touch;
       scrollbar-width: none; overscroll-behavior-x: contain;
       touch-action: pan-x pan-y;
   }
-  .steps-grid::after, .trust-grid::after { content: ''; flex: 0 0 8px; }
+  .steps-grid::after, .trust-grid::after { content: ''; flex: 0 0 4px; }
   .steps-grid::-webkit-scrollbar, .trust-grid::-webkit-scrollbar { display: none; }
-  .step-card, .trust-block { flex: 0 0 85%; scroll-snap-align: start; }
+  .step-card, .trust-block {
+      flex: none; width: calc(100vw - 64px); min-width: calc(100vw - 64px);
+      scroll-snap-align: start; overflow: hidden;
+  }
+  .trust-block { transition: none !important; }
 
   .step-card { background: white; padding: 32px 24px; border-radius: 20px; border: 1px solid #e2e8f0; box-shadow: 0 10px 20px -10px rgba(0,0,0,0.05); }
   
   .inbox-wrapper { margin-left: -24px; margin-right: -24px; width: calc(100% + 48px); max-width: none; border-radius: 0; border-left: none; border-right: none; box-shadow: 0 10px 20px -10px rgba(0,0,0,0.05); }
   
   /* FOUNDER CARD MOBILE */
-  .founder-card { grid-template-columns: 1fr; border-radius: 16px; }
+  .founder-card { border-radius: 16px; }
   .founder-content { padding: 32px 24px; text-align: center; }
   .founder-content h3 { font-size: 28px; }
   .founder-quote { text-align: left; }
-  .founder-image { min-height: 280px; padding: 32px 24px; align-items: center; justify-content: center; }
-  .about-photo { max-width: 220px; transform: none; border-radius: 50%; aspect-ratio: 1; object-fit: cover; }
+  .founder-image { padding: 32px 24px; }
+  .about-photo { width: 150px; height: 150px; }
   
   .gallery { display: flex; flex-wrap: nowrap; overflow-x: auto; scroll-snap-type: x proximity; gap: 16px; padding-bottom: 20px; margin-top: 40px; margin-left:-24px; margin-right:-24px; padding-left:24px; -webkit-overflow-scrolling: touch; scrollbar-width: none; touch-action: pan-x pan-y; }
   .gallery::-webkit-scrollbar { display: none; } 
@@ -776,18 +783,18 @@ h1,h2,h3,h4,h5,h6{
   <div class="section-inner">
     
     <div class="founder-card fade-up">
+      <div class="founder-image">
+        <img class="about-photo" loading="lazy" src="Mattiasrund.png" alt="Mattias Larsson, EMK Solutions grundare">
+      </div>
       <div class="founder-content">
         <h3>Jag vet hur det ser ut på kansliet</h3>
         <p><strong>Jag heter Mattias Larsson.</strong> Före detta landslagsgymnast och grundare av EMK Solutions. Jag har jobbat med föreningar och idrottsverksamheter i flera år och vet exakt hur mycket jobb som ligger bakom kulisserna.</p>
         <p>Jag vet också att kansliet ofta fastnar i mejl istället för att hinna med allt annat som faktiskt utvecklar verksamheten. EMK är byggt för att ge er den tiden tillbaka.</p>
-        
+
         <div class="founder-quote">
             <div class="founder-quote-icon"><i data-lucide="quote" style="width:16px; height:16px;"></i></div>
             <p>"Samma frågor, om och om igen. Lediga platser, priser, terminsstart. Tiden gick till inkorgen när den behövdes någon annanstans. Det var därför vi byggde detta."</p>
         </div>
-      </div>
-      <div class="founder-image">
-        <img class="about-photo" loading="lazy" src="Mattiasrund.png" alt="Mattias Larsson, EMK Solutions grundare">
       </div>
     </div>
     
