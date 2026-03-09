@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Användarvillkor | EMK Solutions</title>
+<meta name="description" content="Användarvillkor för EMK Solutions tjänst. Läs om villkor, ansvar och betalning.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@0.344.0"></script>
+
+<style>
+/* ─── RESET & BASE ─── */
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:'Inter',sans-serif;
+  color:#1e293b;
+  line-height:1.6;
+  overflow-x:hidden;
+  background:#f8fafc;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,h2,h3,h4,h5,h6{
+  font-family:'Plus Jakarta Sans',sans-serif;
+  font-weight:700;
+  letter-spacing:-0.03em;
+  line-height:1.1;
+}
+
+:root{
+  --blue:#0f172a;
+  --accent:#3b82f6;
+  --accent-hover:#2563eb;
+  --light:#f1f5f9;
+  --dark:#020617;
+  --warm:#f97316;
+  --green:#10b981;
+  --surface: #ffffff;
+  --shadow: 0 10px 30px -10px rgba(0,0,0,0.1);
+}
+
+/* ─── NAV ─── */
+.nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:0 24px;transition:all 0.3s ease;background:rgba(255,255,255,0.95);backdrop-filter:blur(16px);border-bottom:1px solid rgba(0,0,0,0.05);}
+.nav-inner{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;height:80px; position:relative; z-index:1001;}
+
+.nav-logo{font-family:'Plus Jakarta Sans',sans-serif;font-size:22px;font-weight:800;color:var(--blue);letter-spacing:-0.5px;text-decoration: none; transition: color 0.3s;}
+.nav-logo span{color:var(--accent);}
+
+.nav-links{display:flex;gap:32px;align-items:center;}
+.nav-links a.nav-item{text-decoration:none;color:#64748b;font-size:15px;font-weight:500;transition:color 0.2s;}
+.nav-links a.nav-item:hover{color:var(--accent);}
+
+.mobile-toggle{display:none;background:none;border:none;cursor:pointer;color:var(--blue); z-index:1002;}
+
+/* ─── BUTTONS ─── */
+.cta-btn{
+  background:var(--accent);color:white;border:none;padding:14px 32px;font-size:16px;font-weight:600;
+  border-radius:50px;cursor:pointer;transition:all 0.25s ease;font-family:'Inter',sans-serif;
+  text-decoration:none;display:inline-flex;align-items:center;gap:8px;
+  box-shadow: 0 4px 14px 0 rgba(59, 130, 246, 0.39);
+}
+.cta-btn:hover{background:var(--accent-hover);transform:translateY(-2px);box-shadow:0 6px 20px rgba(59, 130, 246, 0.23);}
+.cta-btn-sm{padding:10px 24px;font-size:14px;}
+
+/* ─── SUBPAGE HERO ─── */
+.subpage-hero {
+  background: var(--dark);
+  padding: 160px 24px 80px;
+  text-align: center;
+}
+.subpage-hero h1 {
+  font-size: 42px;
+  font-weight: 800;
+  color: white;
+  margin-bottom: 16px;
+  letter-spacing: -1px;
+}
+.subpage-hero p {
+  color: #94a3b8;
+  font-size: 18px;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* ─── LEGAL CONTENT ─── */
+.legal-content {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 80px 24px;
+}
+.legal-content h2 {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--blue);
+  margin-top: 48px;
+  margin-bottom: 16px;
+}
+.legal-content h2:first-child {
+  margin-top: 0;
+}
+.legal-content h3 {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--blue);
+  margin-top: 32px;
+  margin-bottom: 12px;
+}
+.legal-content p {
+  color: #475569;
+  font-size: 16px;
+  line-height: 1.8;
+  margin-bottom: 16px;
+}
+.legal-content ul, .legal-content ol {
+  padding-left: 24px;
+  margin-bottom: 16px;
+}
+.legal-content ul { list-style: disc; }
+.legal-content ol { list-style: decimal; }
+.legal-content ul li, .legal-content ol li {
+  color: #475569;
+  font-size: 16px;
+  line-height: 1.8;
+  margin-bottom: 8px;
+}
+.legal-content a {
+  color: var(--accent);
+  text-decoration: underline;
+}
+.legal-content a:hover {
+  color: var(--accent-hover);
+}
+.legal-content strong {
+  color: var(--blue);
+}
+.legal-meta {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 24px 32px;
+  margin-bottom: 48px;
+}
+.legal-meta p {
+  margin-bottom: 4px;
+  font-size: 15px;
+}
+
+/* ─── FOOTER ─── */
+.footer{padding:64px 24px 32px;background:var(--dark); border-top: 1px solid rgba(255,255,255,0.05);}
+.footer-inner{max-width:1200px;margin:0 auto;}
+.footer-grid {
+  display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 64px; margin-bottom: 64px;
+}
+.footer-col p { color: #cbd5e1; font-size: 14px; line-height: 1.6; }
+.footer-col h4 { color: white; font-size: 16px; margin-bottom: 24px; }
+.footer-col ul { list-style: none; }
+.footer-col ul li { margin-bottom: 12px; }
+.footer-col ul li a { color: #94a3b8; text-decoration: none; font-size: 14px; transition: color 0.2s; }
+.footer-col ul li a:hover { color: white; }
+.footer-bottom {
+  padding-top: 32px; border-top: 1px solid rgba(255,255,255,0.1);
+  display: flex; justify-content: space-between; align-items: center;
+}
+.footer-bottom p { color: #64748b; font-size: 14px; }
+
+/* ─── RESPONSIVE ─── */
+@media(max-width:960px){
+  .subpage-hero { padding: 120px 24px 56px; }
+  .subpage-hero h1 { font-size: 32px; }
+  .subpage-hero p { font-size: 16px; }
+  .legal-content { padding: 48px 24px; }
+  .legal-content h2 { font-size: 22px; margin-top: 40px; }
+
+  .mobile-toggle {display: block;}
+  .nav-links {
+    position: fixed; top: 0; left: 0; right: 0; bottom: 0; height: 100vh;
+    background: rgba(255, 255, 255, 0.96); backdrop-filter: blur(16px);
+    flex-direction: column; justify-content: center; align-items: center;
+    padding: 24px; gap: 40px; box-shadow: none; transform: translateY(-100%);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1); z-index: 900;
+  }
+  .nav-links.open {transform: translateY(0);}
+  .nav-links a.nav-item {font-size: 22px; font-weight: 600; color: var(--blue);}
+
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
+  .footer-bottom { flex-direction: column; gap: 24px; text-align: center; }
+}
+
+@media(max-width:480px) {
+  .footer-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">EMK Solutions<span>.</span></a>
+    <button class="mobile-toggle" id="mobile-toggle" aria-label="Meny">
+        <i data-lucide="menu" style="width:28px;height:28px;"></i>
+    </button>
+    <div class="nav-links" id="nav-links">
+      <a href="index.html#how" class="nav-item">Så funkar det</a>
+      <a href="index.html#demo" class="nav-item">Demo</a>
+      <a href="index.html#about" class="nav-item">Om oss</a>
+      <a href="index.html#faq" class="nav-item">Säkerhet</a>
+      <a href="https://calendly.com/mattias-larsson-emkmarketing/motesbokning" target="_blank" rel="noopener noreferrer" class="cta-btn cta-btn-sm">Boka demo</a>
+    </div>
+  </div>
+</nav>
+
+<section class="subpage-hero">
+  <h1>Användarvillkor</h1>
+  <p>Villkor för användning av EMK Solutions tjänst för automatiserad mejlhantering.</p>
+</section>
+
+<div class="legal-content">
+
+  <div class="legal-meta">
+    <p><strong>Tjänsteleverantör:</strong> Mattias Larsson Brands AB</p>
+    <p><strong>Organisationsnummer:</strong> 559419-5090</p>
+    <p><strong>Senast uppdaterad:</strong> 2026-03-09</p>
+  </div>
+
+  <h2>1. Tjänstebeskrivning</h2>
+  <p>EMK Solutions tillhandahåller en AI-baserad tjänst för automatiserad mejlhantering, specifikt utvecklad för gymnastikföreningar. Tjänsten läser inkommande mejl, genererar svarsutkast baserat på föreningens kunskapsbas och levererar utkasten till föreningens inkorg för granskning och manuell sändning.</p>
+
+  <h2>2. Avtalets ingående</h2>
+  <p>Avtalet träder i kraft när föreningen bekräftar sin beställning och EMK Solutions påbörjar uppsättning av tjänsten. Bekräftelse sker via e-post eller genom signering av offert.</p>
+
+  <h2>3. Kundens ansvar</h2>
+  <p>Kunden ansvarar för att:</p>
+  <ul>
+    <li>Tillhandahålla korrekt och aktuell föreningsinformation (träningstider, grupper, kontaktuppgifter etc.).</li>
+    <li>Granska och godkänna svarsutkast innan de skickas till mottagare.</li>
+    <li>Informera EMK Solutions vid väsentliga ändringar i verksamheten som påverkar innehållet.</li>
+    <li>Säkerställa att föreningen har rättslig grund att behandla personuppgifter i mejlkommunikation.</li>
+  </ul>
+
+  <h2>4. EMK Solutions ansvar</h2>
+  <p>EMK Solutions ansvarar för att:</p>
+  <ul>
+    <li>Leverera tjänsten i enlighet med överenskommen specifikation.</li>
+    <li>Säkerställa rimlig tillgänglighet och driftsäkerhet.</li>
+    <li>Behandla all data i enlighet med GDPR och gällande personuppgiftsbiträdesavtal.</li>
+    <li>Genomföra uppsättning och konfiguration inom avtalad tidsram.</li>
+  </ul>
+
+  <h2>5. Priser och betalning</h2>
+  <p>Tjänsten faktureras månadsvis i förskott. Aktuella priser framgår av offerten. Priserna är exklusive moms om inget annat anges.</p>
+  <ul>
+    <li><strong>Månadsavgift:</strong> Från 2 495 kr/mån beroende på valt paket.</li>
+    <li><strong>Engångsavgift för uppsättning:</strong> 6 500 kr.</li>
+    <li><strong>Betalningsvillkor:</strong> 15 dagar netto.</li>
+  </ul>
+  <p>EMK Solutions förbehåller sig rätten att justera priser med 30 dagars skriftligt varsel.</p>
+
+  <h2>6. Ingen bindningstid</h2>
+  <p>Tjänsten löper utan bindningstid. Kunden kan säga upp tjänsten när som helst med verkan från nästa månadsskifte. Ingen uppsägningsavgift debiteras. Redan betald månadsavgift återbetalas inte vid förtida uppsägning.</p>
+
+  <h2>7. Ansvarsbegränsning</h2>
+  <p>EMK Solutions ansvarar inte för:</p>
+  <ul>
+    <li>Konsekvenser av att kunden skickar svarsutkast utan tillräcklig granskning.</li>
+    <li>Indirekt skada, utebliven vinst eller förlust av data utöver vad som täcks av våra säkerhetsåtgärder.</li>
+    <li>Driftstörningar orsakade av tredjepartsleverantörer (Google, AI-tjänster etc.).</li>
+  </ul>
+  <p>EMK Solutions totala ansvar under avtalet är begränsat till de avgifter kunden betalat under de senaste tre (3) månaderna.</p>
+
+  <h2>8. Immateriella rättigheter</h2>
+  <p>All teknik, kod, processer och metoder som utgör EMK Solutions tjänst tillhör Mattias Larsson Brands AB. Kunden erhåller en icke-exklusiv rätt att använda tjänsten under avtalstiden.</p>
+
+  <h2>9. Sekretess</h2>
+  <p>Båda parter förbinder sig att behandla konfidentiell information som de tar del av genom avtalsförhållandet med sekretess. Sekretessåtagandet gäller även efter avtalets upphörande.</p>
+
+  <h2>10. Tillämplig lag och tvister</h2>
+  <p>Dessa villkor lyder under svensk lag. Tvister som uppstår i anledning av dessa villkor ska i första hand lösas genom förhandling. Om parterna inte kan enas ska tvisten avgöras av allmän domstol med Stockholms tingsrätt som första instans.</p>
+
+  <h2>11. Ändringar</h2>
+  <p>EMK Solutions förbehåller sig rätten att ändra dessa villkor. Vid väsentliga ändringar meddelas kunden minst 30 dagar i förväg. Fortsatt användning av tjänsten efter att ändringarna trätt i kraft innebär ett godkännande av de uppdaterade villkoren.</p>
+
+</div>
+
+<footer class="footer">
+  <div class="footer-inner" style="display:block;">
+    <div class="footer-grid">
+        <div class="footer-col">
+            <a href="index.html" class="nav-logo" style="margin-bottom:16px; display:inline-block;">EMK Solutions<span>.</span></a>
+            <p style="max-width: 300px; margin-bottom: 24px;">Vi hjälper gymnastikföreningar att automatisera det tråkiga, så ni kan fokusera på det roliga. Byggt i Sverige för sporten.</p>
+            <div style="display:flex; gap:16px;">
+                <a href="https://www.linkedin.com/in/mattias-larsson-64283b224/" target="_blank" rel="noopener noreferrer" style="color:rgba(255,255,255,0.6);"><i data-lucide="linkedin" style="width:20px;"></i></a>
+            </div>
+        </div>
+
+        <div class="footer-col">
+            <h4>Produkt</h4>
+            <ul>
+                <li><a href="index.html#how">Så funkar det</a></li>
+                <li><a href="index.html#demo">Demo & Exempel</a></li>
+                <li><a href="index.html#cta">Pris & Boka</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-col">
+            <h4>Företaget</h4>
+            <ul>
+                <li><a href="index.html#about">Om Mattias</a></li>
+                <li><a href="mailto:mattias&#64;emksolutions&#46;se">Kontakta oss</a></li>
+                <li><a href="partner.html">Bli partner</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-col">
+            <h4>Juridik</h4>
+            <ul>
+                <li><a href="integritetspolicy.html">Integritetspolicy (GDPR)</a></li>
+                <li><a href="anvandarvillkor.html">Användarvillkor</a></li>
+                <li><a href="cookies.html">Cookies</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <p>© 2026 Alla rättigheter förbehållna.</p>
+        <p style="font-size:13px; opacity:0.6;">Orgnr: 559419-5090</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+lucide.createIcons();
+
+const mobileToggle = document.getElementById('mobile-toggle');
+const navLinks = document.getElementById('nav-links');
+const nav = document.getElementById('nav');
+
+mobileToggle.addEventListener('click', () => {
+    navLinks.classList.toggle('open');
+    nav.classList.toggle('menu-open');
+    const icon = navLinks.classList.contains('open') ? 'x' : 'menu';
+    mobileToggle.innerHTML = `<i data-lucide="${icon}" style="width:28px;height:28px;"></i>`;
+    lucide.createIcons();
+});
+</script>
+</body>
+</html>
